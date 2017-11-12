@@ -1,0 +1,14 @@
+{
+    "name": "abdumu/tailwindo",
+    "description": "Convert Bootstrap CSS to Tailwind CSS",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdulrahman",
+            "email": "saanina@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
