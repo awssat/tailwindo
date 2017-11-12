@@ -13,4 +13,10 @@ $output = (new Converter)
             ->get(); // gets converted code
 ```
 
+## Install 
+You can install the package via composer:
 
+`composer require abdumu/tailwindo`
+
+## License
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

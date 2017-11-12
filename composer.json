@@ -1,7 +1,11 @@
 {
     "name": "abdumu/tailwindo",
     "description": "Convert Bootstrap CSS to Tailwind CSS",
-    "type": "library",
+    "keywords": [
+    "Tailwind",
+    "Bootstrap"
+    ],
+    "homepage": "https://github.com/abdumu/tailwindo",
     "license": "MIT",
     "authors": [
         {
