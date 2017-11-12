@@ -6,7 +6,7 @@ class Converter
 {
     protected $givenContent = '';
 
-    protected $isCssFile = false;
+    protected $isCssClassesOnly = false;
     
     protected $changes = 0;
     
@@ -80,9 +80,9 @@ class Converter
      * @param  bool    $value
      * @return Converter
      */
-    public function isCSS(bool $value)
+    public function classesOnly(bool $value)
     {
-        $this->isCssFile = $value;
+        $this->isCssClassesOnly = $value;
         
         return $this;
     }
@@ -714,8 +714,8 @@ class Converter
     {
         $currentContent = $this->givenContent;
         
-        $regexStart = ! $this->isCssFile ? '(?<start>class\s*=\s*["\'].*?)' : '(?<start>\s*)';
-        $regexEnd = ! $this->isCssFile ? '(?<end>.*?["\'])' : '(?<end>\s*)';
+        $regexStart = ! $this->isCssClassesOnly ? '(?<start>class\s*=\s*["\'].*?)' : '(?<start>\s*)';
+        $regexEnd = ! $this->isCssClassesOnly ? '(?<end>.*?["\'])' : '(?<end>\s*)';
         
     
         $search = preg_quote($search);
