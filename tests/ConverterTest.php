@@ -5,7 +5,7 @@ namespace Awssat\Tailwindo\Test;
 use Awssat\Tailwindo\Converter;
 use PHPUnit\Framework\TestCase;
 
-class ConvererTest extends TestCase
+class ConverterTest extends TestCase
 {
     /** @var Awssat\Tailwindo\Converter */
     protected $converter;
@@ -14,7 +14,7 @@ class ConvererTest extends TestCase
     {
         $this->converter = new Converter();
     }
-    
+
     /** @test */
     public function it_return_output()
     {
