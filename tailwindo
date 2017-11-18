@@ -1,0 +1,54 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Awssat\Tailwindo\ConsoleHelper;
+
+if (file_exists(__DIR__.'/vendor/autoload.php')) {
+    require __DIR__.'/vendor/autoload.php';
+} else {
+    require __DIR__.'/../../autoload.php';
+}
+
+(new Application('tailwindo', '1.0.0'))
+        
+    ->register('tailwindo')
+     
+    ->addArgument('arg', InputArgument::OPTIONAL, 'a file path/a folder path/Bootstrap CSS classes')
+     
+    ->setCode(function (InputInterface $input, OutputInterface $output) {
+        // output arguments and options
+        $arg = $input->getFirstArgument();
+
+        $arg = trim($arg);
+
+        if (empty($arg)) {
+            $output->writeln('<comment>Oops! nothing to convert.</comment>');
+            return -1;
+        }
+
+        $consoleHelper = new ConsoleHelper($output);
+
+        //file?
+        if (is_file($arg)) {
+            return $consoleHelper->fileConvert($arg);
+        }
+
+        //folder ?
+        if (is_dir($arg)) {
+            return $consoleHelper->folderConvert($arg);
+        }
+
+        //any html/css classes
+        return $consoleHelper->codeConvert($arg);
+    })
+
+      ->getApplication()
+
+      ->setDefaultCommand('tailwindo', true)
+
+      ->run();

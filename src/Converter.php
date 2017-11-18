@@ -1,6 +1,6 @@
 <?php
 
-namespace Abdumu\Tailwindo;
+namespace Awssat\Tailwindo;
 
 class Converter
 {
@@ -54,7 +54,7 @@ class Converter
      * @param string $content
      * @return Converter
      */
-    public function construct($content = null)
+    public function __construct($content = null)
     {
         if (! empty($given)) {
             $this->givenContent = $content;
