@@ -1,13 +1,12 @@
 <?php 
 /**
- * Example of Tailwindo class
+ * Example of Tailwindo class.
  */
-
 use Abdumu\Tailwindo\Converter;
 
 require 'src/Converter.php';
 
-$htmlFile= 'input/index.html';
+$htmlFile = 'input/index.html';
 $outputFolder = 'output';
 
 $input = '<div class="container mt-3">
@@ -16,7 +15,7 @@ $input = '<div class="container mt-3">
                 </div>
             </div>';
 
-$output = (new Converter)
+$output = (new Converter())
             ->setContent($input)
             ->convert()
             ->get();
