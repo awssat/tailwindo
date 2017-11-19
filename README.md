@@ -14,25 +14,40 @@ You can install the package via composer globally:
 
 `$ composer global require awssat/tailwindo`
 
-Then use it like to convert a snippet, a file or a folder.
+Then use it to convert a snippet, a file or a folder.
 
-### convert a code
-`$ tailwindo 'alert alert-info'`
-`$ tailwindo '<div class="alert alert-info mb-2 mt-3">hi</div>'`
+### Convert a code
+just CSS classes:
 
-### convert a file (in a new file like file.html -> file.tw.html)
-`$ tailwindo file.blade.php`
+```bash
+$ tailwindo 'alert alert-info'
+```
 
-### convert a folder (only php and html files will be converted to new files)
-`$ tailwindo path/to/folder`
+Or html:
+
+```bash
+$ tailwindo '<div class="alert alert-info mb-2 mt-3">hi</div>'
+```
+
+### Convert a file (in a new file like file.html -> file.tw.html)
+```bash
+$ tailwindo file.blade.php
+```
+
+### Convert a folder (only php and html files will be converted to new files)
+```bash
+$ tailwindo path/to/folder`
+```
 
 ## Using the package
 
 You can install the package via composer locally in your project folder:
 
-`$ composer require awssat/tailwindo`
+```bash 
+$ composer require awssat/tailwindo
+```
 
-then use it like this: 
+Then use it like this: 
 
 ```php
 use Awssat\Tailwindo\Converter;
