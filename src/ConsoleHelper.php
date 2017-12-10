@@ -20,7 +20,7 @@ class ConsoleHelper
     public function folderConvert($folderPath)
     {
         $this->output->writeln('<question>Start Converting Folder: </question>'.$folderPath);
-    
+
         if ($this->recursive) {
             $iterator = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator(
@@ -32,7 +32,7 @@ class ConsoleHelper
         } else {
             $iterator = new \DirectoryIterator($folderPath);
         }
-        
+
         foreach ($iterator as $path => $directory) {
             $extensions = explode('.', $directory);
             $extension = end($extensions);
