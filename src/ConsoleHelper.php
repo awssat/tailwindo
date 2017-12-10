@@ -8,20 +8,36 @@ class ConsoleHelper
 {
     protected $converter;
     protected $output;
+    protected $recursive = false;
 
-    public function __construct(OutputInterface $output)
+    public function __construct(OutputInterface $output, $recursive)
     {
         $this->converter = new Converter();
         $this->output = $output;
+        $this->recursive = $recursive;
     }
 
     public function folderConvert($folderPath)
     {
         $this->output->writeln('<question>Start Converting Folder: </question>'.$folderPath);
-
-        foreach (new \DirectoryIterator($folderPath) as $file) {
-            if ($file->isFile() && !$file->isDot() && $this->isConvertableFile($file->getExtension())) {
-                $this->fileConvert($file->getRealPath());
+    
+        if ($this->recursive) {
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator(
+                    $folderPath, \RecursiveDirectoryIterator::SKIP_DOTS
+                ),
+                \RecursiveIteratorIterator::SELF_FIRST,
+                \RecursiveIteratorIterator::CATCH_GET_CHILD
+            );
+        } else {
+            $iterator = new \DirectoryIterator($folderPath);
+        }
+        
+        foreach ($iterator as $path => $directory) {
+            $extensions = explode('.', $directory);
+            $extension = end($extensions);
+            if ($directory->isFile() && $this->isConvertableFile($extension)) {
+                $this->fileConvert($directory->getRealPath());
             }
         }
     }
