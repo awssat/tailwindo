@@ -10,7 +10,7 @@ class ConsoleHelper
     protected $output;
     protected $overwrite;
     protected $recursive = false;
-    
+
     public function __construct(OutputInterface $output, $overwrite, $recursive)
     {
         $this->converter = new Converter();
