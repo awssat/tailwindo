@@ -8,11 +8,13 @@ class ConsoleHelper
 {
     protected $converter;
     protected $output;
-
-    public function __construct(OutputInterface $output)
+    protected $overwrite;
+    
+    public function __construct(OutputInterface $output, $overwrite)
     {
         $this->converter = new Converter();
         $this->output = $output;
+        $this->overwrite = $overwrite;
     }
 
     public function folderConvert($folderPath)
@@ -41,10 +43,13 @@ class ConsoleHelper
 
         $lastDotPosition = strrpos($filePath, '.');
 
-        if ($lastDotPosition !== false) {
+        if ($lastDotPosition !== false && !$this->overwrite) {
             $newFilePath = substr_replace($filePath, '.tw', $lastDotPosition, 0);
-        } else {
+        } elseif (!$this->overwrite) {
             $newFilePath = $filePath.'.tw';
+        } else {
+            // Set the new path to the old path to make sure we overwrite it
+            $newFilePath = $filePath;
         }
 
         $newContent = $this->converter
