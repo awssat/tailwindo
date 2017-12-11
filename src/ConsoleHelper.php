@@ -9,7 +9,7 @@ class ConsoleHelper
     protected $converter;
     protected $output;
     protected $overwrite;
-    
+
     public function __construct(OutputInterface $output, $overwrite)
     {
         $this->converter = new Converter();
