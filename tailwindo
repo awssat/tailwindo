@@ -20,6 +20,8 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
      
     ->addArgument('arg', InputArgument::OPTIONAL, 'a file path/a folder path/Bootstrap CSS classes')
      
+    ->addOption('recursive', 'r', InputOption::VALUE_OPTIONAL, 'This will recurse through all directories under the main directory', false)
+     
     ->setCode(function (InputInterface $input, OutputInterface $output) {
         // output arguments and options
         $arg = $input->getFirstArgument();
@@ -30,8 +32,10 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
             $output->writeln('<comment>Oops! nothing to convert.</comment>');
             return -1;
         }
+        
+        $is_recursive = (bool) $input->getOption('recursive');
 
-        $consoleHelper = new ConsoleHelper($output);
+        $consoleHelper = new ConsoleHelper($output, $is_recursive);
 
         //file?
         if (is_file($arg)) {
