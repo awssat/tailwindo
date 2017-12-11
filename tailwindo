@@ -20,6 +20,8 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
      
     ->addArgument('arg', InputArgument::OPTIONAL, 'a file path/a folder path/Bootstrap CSS classes')
      
+    ->addOption('replace', null, InputOption::VALUE_REQUIRED, 'This will overwrite the original file.', false)
+     
     ->setCode(function (InputInterface $input, OutputInterface $output) {
         // output arguments and options
         $arg = $input->getFirstArgument();
@@ -30,8 +32,11 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
             $output->writeln('<comment>Oops! nothing to convert.</comment>');
             return -1;
         }
+        
+        $replace = (bool) $input->getOption('replace');
 
-        $consoleHelper = new ConsoleHelper($output);
+
+        $consoleHelper = new ConsoleHelper($output, $replace);
 
         //file?
         if (is_file($arg)) {
