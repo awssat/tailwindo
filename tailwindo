@@ -21,8 +21,11 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
     ->addArgument('arg', InputArgument::OPTIONAL, 'a file path/a folder path/Bootstrap CSS classes')
 
     ->addOption('replace', null, InputOption::VALUE_REQUIRED, 'This will overwrite the original file.', false)
+   
     ->addOption('recursive', 'r', InputOption::VALUE_OPTIONAL, 'This will recurse through all directories under the main directory', false)
-     
+    
+    ->addOption('extensions', 'e', InputOption::VALUE_REQUIRED, 'This allows for custom extensions', 'php,html')
+
     ->setCode(function (InputInterface $input, OutputInterface $output) {
         // output arguments and options
         $arg = $input->getFirstArgument();
@@ -38,9 +41,14 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
         $replace = (bool) $input->getOption('replace');
 
         $is_recursive = (bool) $input->getOption('recursive');
+        
+        $acceptedExts = array_map('trim', array_map(function ($ext) {
+            return trim($ext, '.');
+        }, array_filter(explode(',', $input->getOption('extensions')), function ($ext) {
+            return !empty($ext);
+        })));
 
-        $consoleHelper = new ConsoleHelper($output, $is_recursive, $replace);
-
+        $consoleHelper = new ConsoleHelper($output, $is_recursive, $replace, $acceptedExts);
 
         //file?
         if (is_file($arg)) {
