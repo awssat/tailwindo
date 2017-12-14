@@ -8,7 +8,7 @@
 This tool can convert Boostrap CSS classes in HTML code to equivalent Tailwind CSS classes, still not perfect but good as a helper tool.
 
 
-## Using the command line
+## Installing `tailwindo` for CLI use
 
 You can install the package via composer globally:
 
@@ -16,7 +16,33 @@ You can install the package via composer globally:
 
 Then use it to convert a snippet, a file or a folder.
 
-### Convert a code
+### Using the command
+
+#### Possible Options
+##### Convert a directory (just the files in this directory, it's not recursive)
+```bash
+$ tailwindo path/to/directory/ 
+```
+##### Recursively convert a directory
+```bash
+$ tailwindo path/to/directory/ --recursive=true
+```
+You can also use the short hand `-r true` instead of the full `--recursive=true`
+
+##### Convert different file extensions
+This will allow you to upgrade your `vue` files, `twig` files, and more!
+```bash
+$ tailwindo path/to/directory/ --extensions=vue,php,html
+```
+You can also use the short hand `-e vue,php,html` instead of the full `--extensions`
+
+##### Overwrite the original files
+_Please note this can be considered a destructive action as it will replace the orignal file and will not leave a copy of the original any where._
+```bash
+$ tailwindo path/to/directory/ --replace=true
+```
+
+##### Convert raw code
 just CSS classes:
 
 ```bash
@@ -29,15 +55,12 @@ Or html:
 $ tailwindo '<div class="alert alert-info mb-2 mt-3">hi</div>'
 ```
 
-### Convert a file (in a new file like file.html -> file.tw.html)
+### Convert a file
+By default this will copy the code into a new file like file.html -> file.tw.html
 ```bash
 $ tailwindo file.blade.php
 ```
-
-### Convert a folder (only php and html files will be converted to new files)
-```bash
-$ tailwindo path/to/folder`
-```
+This option works with the `--replace=true` option
 
 ## Using the package
 
