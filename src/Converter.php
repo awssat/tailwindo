@@ -566,8 +566,8 @@ class Converter
     {
         $this->searchAndReplace('form-group', 'mb-4');
         $this->searchAndReplace('form-control', 'block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded');
-        $this->searchAndReplace('form-control-lg', 'py-2 px-4 text-lg leading-normal rouned');
-        $this->searchAndReplace('form-control-sm', 'py-1 px-2 text-sm leading-normal rouned');
+        $this->searchAndReplace('form-control-lg', 'py-2 px-4 text-lg leading-normal rounded');
+        $this->searchAndReplace('form-control-sm', 'py-1 px-2 text-sm leading-normal rounded');
         $this->searchAndReplace('form-control-file', 'block appearance-none');
         $this->searchAndReplace('form-control-range', 'block appearance-none');
 
@@ -578,7 +578,7 @@ class Converter
         $this->searchAndReplace('col-form-label-sm', 'pt-1 pb-1 mb-0 leading-normal');
 
         $this->searchAndReplace('col-form-legend', 'pt-2 pb-2 mb-0 text-base');
-        $this->searchAndReplace('col-form-plaintext', 'pt-2 pb-2 mb-0 leading-normal bg-transparent border-transparent border-r-0 border-l-0 border-t-1 border-b-1');
+        $this->searchAndReplace('col-form-plaintext', 'pt-2 pb-2 mb-0 leading-normal bg-transparent border-transparent border-r-0 border-l-0 border-t border-b');
 
         $this->searchAndReplace('form-text', 'block mt-1');
         $this->searchAndReplace('form-row', 'flex flex-wrap -mr-1 -ml-1');
@@ -588,10 +588,10 @@ class Converter
 
         $this->searchAndReplace('form-check-inline', 'inline-block mr-2');
         $this->searchAndReplace('valid-feedback', 'hidden mt-1 text-sm text-green');
-        $this->searchAndReplace('valid-tooltip', 'absolute z-10 hidden w-4 font-normal leading-noraml text-white rounded p-2 bg-green-dark');
+        $this->searchAndReplace('valid-tooltip', 'absolute z-10 hidden w-4 font-normal leading-normal text-white rounded p-2 bg-green-dark');
         $this->searchAndReplace('is-valid', 'bg-green-dark');
         $this->searchAndReplace('invalid-feedback', 'hidden mt-1 text-sm text-red');
-        $this->searchAndReplace('invalid-tooltip', 'absolute z-10 hidden w-4 font-normal leading-noraml text-white rounded p-2 bg-red-dark');
+        $this->searchAndReplace('invalid-tooltip', 'absolute z-10 hidden w-4 font-normal leading-normal text-white rounded p-2 bg-red-dark');
         $this->searchAndReplace('is-invalid', 'bg-red-dark');
     }
 
