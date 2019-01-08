@@ -658,7 +658,7 @@ class Converter
         $this->searchAndReplace('nav-item', $navItemClasses);
 
         $this->searchAndReplace('navbar', 'relative flex flex-wrap items-center content-between py-2 px-4');
-        $this->searchAndReplace('navbar-brand', 'inline-block pt-1 pb-1 mr-4 text-lg whitespace-nowrap');
+        $this->searchAndReplace('navbar-brand', 'inline-block pt-1 pb-1 mr-4 text-lg whitespace-no-wrap');
         $this->searchAndReplace('navbar-nav', 'flex flex-wrap list-reset pl-0 mb-0');
         $this->searchAndReplace('navbar-text', 'inline-block pt-2 pb-2');
         $this->searchAndReplace('navbar-collapse', 'flex-grow items-center');
