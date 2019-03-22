@@ -57,7 +57,7 @@ class Converter
      */
     public function __construct($content = null)
     {
-        if (!empty($given)) {
+        if (!empty($content)) {
             $this->givenContent = $content;
         }
 
