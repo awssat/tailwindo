@@ -13,6 +13,9 @@
 
 This tool can convert Boostrap CSS classes in HTML code to equivalent Tailwind CSS classes, still not perfect but good as a helper tool.
 
+## Media Coverage 
+- [Laravel News: Convert your Bootstrap CSS to Tailwind with Tailwindo](https://laravel-news.com/tailwindo)
+
 
 ## Installing `tailwindo` for CLI use
 
