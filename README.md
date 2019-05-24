@@ -17,6 +17,8 @@ This tool can convert Boostrap CSS classes in HTML code to equivalent Tailwind C
 - [Laravel News: Convert your Bootstrap CSS to Tailwind with Tailwindo](https://laravel-news.com/tailwindo)
 - [Laravel Arabic: تحويل صفحات Bootstrap إلى Tailwind مع حزمة Tailwindo](https://laravel-ar.com/article/37/%D8%AA%D8%AD%D9%88%D9%8A%D9%84-%D8%B5%D9%81%D8%AD%D8%A7%D8%AA-bootstrap-%D8%A5%D9%84%D9%89-tailwind-%D9%85%D8%B9-%D8%AD%D8%B2%D9%85%D8%A9-tailwindo)
 
+Note: Tailwindo currently convert code to Tailwindcss 0.7, to convert to 0.1 from 0.7 use ([tailwind-shift](https://github.com/awssat/tailwind-shift))
+
 ## Installing `tailwindo` for CLI use
 
 You can install the package via composer globally:
