@@ -21,7 +21,7 @@ Note: Tailwindo currently convert code to Tailwindcss 0.7, to convert to 0.1 fro
 
 ## Installing `tailwindo` for CLI use
 
-You can install the package via composer globally:
+You can install the package via [composer](https://getcomposer.org/doc/00-intro.md) globally:
 
 `$ composer global require awssat/tailwindo`
 
