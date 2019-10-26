@@ -15,4 +15,4 @@ This tool can convert Boostrap CSS classes in HTML code to equivalent Tailwind C
 
 
 ## Docs
-You can start reading Tailwind's docs on our website [ [docs](https://awssat.com/opensource/tailwindo) ].
+You can start reading Tailwindo's docs on our website [ [docs](https://awssat.com/opensource/tailwindo) ].
