@@ -11,17 +11,20 @@ class ConsoleHelper
     protected $recursive = false;
     protected $overwrite;
     protected $extensions;
+    protected $framework = 'bootstrap';
 
-    public function __construct(OutputInterface $output, $recursive, $overwrite, $extensions)
+    public function __construct(OutputInterface $output, bool $recursive, bool $overwrite, array $extensions, string $framework)
     {
-        $this->converter = new Converter();
+        $this->converter = (new Converter())->setFramework($framework);
+
         $this->output = $output;
         $this->recursive = $recursive;
         $this->overwrite = $overwrite;
         $this->extensions = $extensions;
+        $this->framework = $framework;
     }
 
-    public function folderConvert($folderPath)
+    public function folderConvert(string $folderPath)
     {
         $this->output->writeln('<question>Start Converting Folder: </question>'.$folderPath);
 
@@ -37,10 +40,10 @@ class ConsoleHelper
             $iterator = new \DirectoryIterator($folderPath);
         }
 
-        foreach ($iterator as $path => $directory) {
+        foreach ($iterator as $_ => $directory) {
             $extensions = explode('.', $directory);
             $extension = end($extensions);
-            if ($directory->isFile() && $this->isConvertableFile($extension)) {
+            if ($directory->isFile() && $this->isConvertibleFile($extension)) {
                 $this->fileConvert($directory->getRealPath());
             }
         }
@@ -84,7 +87,7 @@ class ConsoleHelper
         }
     }
 
-    public function codeConvert($code)
+    public function codeConvert(?string $code)
     {
         $convertedCode = $this->converter
                     ->setContent($code)
@@ -96,11 +99,9 @@ class ConsoleHelper
     }
 
     /**
-     * Check whether a file is convertable or not based on its extension.
-     *
-     * @param string $extension
+     * Check whether a file is convertible or not based on its extension.
      */
-    protected function isConvertableFile($extension)
+    protected function isConvertibleFile(string $extension): bool
     {
         return in_array($extension, $this->extensions);
     }

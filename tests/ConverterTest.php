@@ -10,17 +10,21 @@ class ConverterTest extends TestCase
     /** @var Awssat\Tailwindo\Converter */
     protected $converter;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->converter = new Converter();
+        $this->converter = (new Converter())->setFramework('bootstrap');
     }
 
     /** @test */
     public function it_return_output()
     {
         $this->assertEquals(
-            'mb-2',
-            $this->converter->setContent('mb-2')->convert()->get()
+            'sm:flex',
+            $this->converter->classesOnly(true)->setContent('d-sm-flex')->convert()->get()
+        );
+        $this->assertEquals(
+            '<a class="text-gray-500">love</a>',
+            $this->converter->setContent('<a class="text-muted">love</a>')->convert()->get()
         );
     }
 }

@@ -14,17 +14,19 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/../../autoload.php';
 }
 
-(new Application('tailwindo', '2.1.0'))
+(new Application('tailwindo', '3.0.0'))
         
     ->register('tailwindo')
-     
+
     ->addArgument('arg', InputArgument::OPTIONAL, 'a file path/a folder path/Bootstrap CSS classes')
 
     ->addOption('replace', null, InputOption::VALUE_REQUIRED, 'This will overwrite the original file.', false)
-   
-    ->addOption('recursive', 'r', InputOption::VALUE_OPTIONAL, 'This will recurse through all directories under the main directory', false)
-    
+
+    ->addOption('recursive', 'r', InputOption::VALUE_OPTIONAL, 'This will recurs through all directories under the main directory', false)
+
     ->addOption('extensions', 'e', InputOption::VALUE_REQUIRED, 'This allows for custom extensions', 'php,html')
+
+    ->addOption('framework', 't', InputOption::VALUE_REQUIRED, 'CSS Framework type to convert', 'bootstrap')
 
     ->setCode(function (InputInterface $input, OutputInterface $output) {
         // output arguments and options
@@ -48,7 +50,14 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
             return !empty($ext);
         })));
 
-        $consoleHelper = new ConsoleHelper($output, $is_recursive, $replace, $acceptedExts);
+        $framework = strtolower($input->getOption('framework'));
+
+        if (! class_exists('Awssat\\Tailwindo\\Framework\\' . ucfirst($framework).'Framework')) {
+            $output->writeln("<comment>Oops! {$framework} is not supported!</comment>");
+            return -1;
+        }
+
+        $consoleHelper = new ConsoleHelper($output, $is_recursive, $replace, $acceptedExts, $framework);
 
         //file?
         if (is_file($arg)) {
