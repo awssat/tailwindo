@@ -67,6 +67,8 @@ class Converter
      */
     public function get(): string
     {
+        $this->givenContent = preg_replace('/\{tailwindo\|([^\}]+)\}/', '$1', $this->givenContent);
+
         return $this->givenContent;
     }
 
@@ -98,6 +100,17 @@ class Converter
         return false;
     }
 
+    protected function addToLastSearches($search)
+    {
+        $this->changes++;
+
+        $this->lastSearches[] = stripslashes($search);
+
+        if (count($this->lastSearches) >= 10) {
+            $this->lastSearches = array_slice($this->lastSearches, -10, 10, true);
+        }
+    }
+
     /**
      * Search the given content and replace.
      *
@@ -106,15 +119,13 @@ class Converter
      */
     protected function searchAndReplace($search, $replace): void
     {
-        $currentContent = $this->givenContent;
-
         if($replace instanceof \Closure) {
             $callableReplace = \Closure::bind($replace, $this, self::class);
             $replace = $callableReplace();
         }
 
-        $regexStart = !$this->isCssClassesOnly ? '(?<start>class\s*=\s*["\'].*?)' : '(?<start>\s*)';
-        $regexEnd = !$this->isCssClassesOnly ? '(?<end>.*?["\'])' : '(?<end>\s*)';
+        $regexStart = !$this->isCssClassesOnly ? '(?<start>class\s*=\s*(?<quotation>["\'])((?!\k<quotation>).)*)' : '(?<start>\s*)';
+        $regexEnd = !$this->isCssClassesOnly ? '(?<end>((?!\k<quotation>).)*\k<quotation>)' : '(?<end>\s*)';
 
         $search = preg_quote($search);
 
@@ -124,8 +135,9 @@ class Converter
             if (strpos($search, '\{regex_string\}') !== false || strpos($search, '\{regex_number\}') !== false) {
                 $currentSubstitute++;
                 foreach (['regex_string'=> '[a-zA-Z0-9]+', 'regex_number' => '[0-9]+'] as $regeName => $regexValue) {
-                    $search = preg_replace('/\\\{'.$regeName.'\\\}/', '(?<'.$regeName.'_'.$currentSubstitute.'>'.$regexValue.')', $search, 1);
-                    $replace = preg_replace('/{'.$regeName.'\}/', '${'.$regeName.'_'.$currentSubstitute.'}', $replace, 1);
+                    $regexMatchCount = preg_match_all('/\\\\?\{'.$regeName.'\\\\?\}/', $search);
+                    $search = preg_replace('/\\\\?\{'.$regeName.'\\\\?\}/', '(?<'.$regeName.'_'.$currentSubstitute.'>'.$regexValue.')', $search, 1);
+                    $replace = preg_replace('/\\\\?\{'.$regeName.'\\\\?\}/', '${'.$regeName.'_'.$currentSubstitute.'}', $replace, $regexMatchCount > 1 ? 1 : -1);
                 }
 
                 continue;
@@ -134,26 +146,31 @@ class Converter
             break;
         }
 
-        //class=" given given-md something-given-md"
-        $this->givenContent = preg_replace_callback(
-            '/'.$regexStart.'(?<given>(?<![\-_.\w\d])'.$search.'(?![\-_.\w\d]))'.$regexEnd.'/i',
-             function ($match) use ($replace) {
-                 $replace = preg_replace_callback('/\$\{regex_(\w+)_(\d+)\}/', function ($m) use ($match) {
+        if(! preg_match_all('/'.$regexStart.'(?<given>(?<![\-_.\w\d])'.$search.'(?![\-_.\w\d]))'.$regexEnd.'/i', $this->givenContent, $matches, PREG_SET_ORDER)) {
+            return;
+        }
+  
+        foreach ($matches as $match) {
+            $result = preg_replace_callback(
+                '/(?<given>(?<![\-_.\w\d])'.$search.'(?![\-_.\w\d]))/',
+                function ($match) use ($replace) {
+                 return preg_replace_callback('/\$\{regex_(string|number)_(\d+)\}/', function ($m) use ($match) {
                      return $match['regex_'.$m[1].'_'.$m[2]];
                  }, $replace);
-
-                 return $match['start'].$replace.$match['end'];
              },
-             $this->givenContent
-         );
+                $match[0]
+            );
 
-        if (strcmp($currentContent, $this->givenContent) !== 0) {
-            $this->changes++;
-
-            $this->lastSearches[] = stripslashes($search);
-
-            if (count($this->lastSearches) >= 10) {
-                $this->lastSearches = array_slice($this->lastSearches, -10, 10, true);
+            if (strcmp($match[0], $result) !== 0) {
+    
+                if ($count = preg_match_all('/\{tailwindo\|.*?\}/', $result)) {
+                    if ($count > 1) {
+                        $result = preg_replace('/\{tailwindo\|.*?\}/', '', $result, $count - 1);
+                    }
+                }
+    
+                $this->givenContent = str_replace($match[0], $result, $this->givenContent);
+                $this->addToLastSearches($search);
             }
         }
     }

@@ -36,18 +36,21 @@ class BootstrapFramework implements Framework
         'warning'   => 'yellow-500',
         'info'      => 'teal-500',
         'light'     => 'gray-100',
-        'dark'      => 'black',
+        'dark'      => 'gray-900',
         'white'     => 'white',
-        'muted'     => 'gray-500',
+        'muted'     => 'gray-700',
     ];
 
 
-    public function supportedVersion(): string
+    public function supportedVersion(): array
     {
         /**
-         * latest version of Bootstrap during the coding of this file.
+         * latest versions of Bootstrap/Tailwind during the coding of this file.
          */
-        return '4.4.1';
+        return [
+            'framework' => '4.4.1',
+            'tailwind' => '1.4.0'
+        ];
     }
 
     /**
@@ -107,8 +110,14 @@ class BootstrapFramework implements Framework
     protected function general(): array
     {
         $mainClasses = [
-                'container-fluid' => 'container mx-auto',
-                'container'       => 'container mx-auto',
+                'container-fluid' => 'container mx-auto px-4',
+                'container'       => function() {
+                    if($this->isInLastSearches('jumbotron', 1)) {
+                        return 'container mx-auto max-w-2xl  px-4';
+                    }
+
+                    return 'container mx-auto  px-4';
+                },
 
                 //http://getbootstrap.com/docs/4.0/utilities/close-icon/
                 'close' => 'p-0 bg-transparent border-0 appearance-none',
@@ -156,7 +165,7 @@ class BootstrapFramework implements Framework
                 'close' => 'absolute top-0 bottom-0 right-0 px-4 py-3',
 
                 //http://getbootstrap.com/docs/4.0/components/jumbotron/
-                'jumbotron'       => 'py-8 px-4 mb-8 bg-gray-200 rounded',
+                'jumbotron'       => 'py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded',
                 'jumbotron-fluid' => 'pr-0 pl-0 rounded-none',
 
         ];
@@ -172,7 +181,7 @@ class BootstrapFramework implements Framework
 
         foreach ($mainClassesEachScreen as $btClass => $twClass) {
             foreach ($this->mediaOptions as $btMedia => $twMedia) {
-                $items[str_replace($btClass, '{screen}', $btMedia)] = str_replace($twMedia, '{screen}', $twMedia);
+                $items[str_replace('{screen}', $btMedia, $btClass)] = str_replace('{screen}', $twMedia, $twClass);
             }
         }
 
@@ -182,8 +191,8 @@ class BootstrapFramework implements Framework
     protected function grid(): array
     {
         $items =[
-            'row' => 'flex flex-wrap',
-            'col' => 'flex-grow max-w-full',
+            'row' => 'flex flex-wrap md:-mx-4',
+            'col' => 'relative flex-grow max-w-full flex-1 px-4',
         ];
 
         //col-(xs|sm|md|lg|xl) = (sm|md|lg|xl):flex-grow
@@ -191,7 +200,7 @@ class BootstrapFramework implements Framework
         //mr-(xs|sm|md|lg|xl)-auto = (sm|md|lg|xl):mx-auto:mr-auto
         foreach ($this->mediaOptions as $btMedia => $twMedia) {
     
-            $items['col-'.$btMedia] = $twMedia.':flex-grow';
+            $items['col-'.$btMedia] = 'relative '.$twMedia.':flex-grow '.$twMedia.':flex-1';
             $items['ml-'.$btMedia.'-auto'] = $twMedia.':ml-auto';
             $items['mr-'.$btMedia.'-auto'] = $twMedia.':mr-auto';
 
@@ -298,8 +307,8 @@ class BootstrapFramework implements Framework
         $items = [];
 
         foreach (array_merge($this->mediaOptions, [''=>'']) as $btMedia => $twMedia) {
-            foreach (['row', 'row-reverse', 'col', 'col-reverse'] as $key) {
-                $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-'.$key] = (empty($twMedia) ? '' : $twMedia.':').'flex-'.$key;
+            foreach (['row', 'row-reverse', 'column', 'column-reverse'] as $key) {
+                $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-'.$key] = (empty($twMedia) ? '' : $twMedia.':').'flex-'.str_replace('column', 'col', $key);
             }
 
             foreach (['start', 'end', 'center', 'between', 'around'] as $key) {
@@ -307,7 +316,7 @@ class BootstrapFramework implements Framework
             }
 
             foreach (['start', 'end', 'center', 'stretch', 'baseline'] as $key) {
-                $items['align-items'.(empty($btMedia) ? '' : '-').$btMedia.'-'.$key] = (empty($twMedia) ? '' : $twMedia.':').'align-'.$key;
+                $items['align-items'.(empty($btMedia) ? '' : '-').$btMedia.'-'.$key] = (empty($twMedia) ? '' : $twMedia.':').'items-'.$key;
             }
 
             foreach (['start', 'end', 'center', 'stretch', 'baseline'] as $key) {
@@ -364,7 +373,7 @@ class BootstrapFramework implements Framework
             $items['m-'.$btMedia.'-{regex_number}'] = $twMedia.':m-{regex_number}';
             $items['m{regex_string}-'.$btMedia.'-{regex_number}'] = $twMedia.':m{regex_string}-{regex_number}';
             $items['p-'.$btMedia.'-{regex_number}'] = $twMedia.':p-{regex_number}';
-            $items['p{regex_string}-'.$btMedia.'-{regex_number}'] = $twMedia.':p {regex_string}-{regex_number}';
+            $items['p{regex_string}-'.$btMedia.'-{regex_number}'] = $twMedia.':p{regex_string}-{regex_number}';
         }
 
         return $items;
@@ -381,7 +390,7 @@ class BootstrapFramework implements Framework
         'text-capitalize' => 'capitalize',
 
         'initialism' => '',
-        'lead' => 'text-lg font-300',
+        'lead' => 'text-xl font-light',
         'small' => 'text-sm',
         'mark' => '',
         'display-1' => 'text-xl',
@@ -401,7 +410,7 @@ class BootstrapFramework implements Framework
 
         'font-weight-bold' => 'font-bold',
         'font-weight-normal' => 'font-normal',
-        'font-weight-300' => 'font-300',
+        'font-weight-300' => 'font-light',
         'font-italic' => 'italic',
         ];
 
@@ -470,12 +479,23 @@ class BootstrapFramework implements Framework
         $items = [
             'alert' => 'relative px-3 py-3 mb-4 border rounded',
             'alert-heading' => '', //color: inherit
-            'alert-link' => 'font-bold no-underline',
+            'alert-link' => 'font-bold no-underline text-current',
             'alert-dismissible' => '',
         ];
 
-        foreach ($this->colors as $btColor => $twColor) {
-                $items['alert-'.$btColor] = 'text-'.$twColor.'-800'.' border-'.$twColor.'-700 bg-'.$twColor.'-200';
+        $colors = [
+            'primary'   => 'bg-blue-200 border-blue-300 text-blue-800',
+            'secondary' => 'bg-gray-300 border-gray-400 text-gray-800',
+            'success'   => 'bg-green-200 border-green-300 text-green-800',
+            'danger'    => 'bg-red-200 border-red-300 text-red-800',
+            'warning'   => 'bg-orange-200 bg-orange-300 bg-orange-800',
+            'info'      => 'bg-teal-200 bg-teal-300 bg-teal-800',
+            'light'     => 'bg-white text-gray-600',
+            'dark' => 'bg-gray-400 border-gray-500 text-gray-900',
+        ];
+
+        foreach ($colors as $btColor => $twColor) {
+                $items['alert-'.$btColor] = $twColor;
         }
 
         return $items;
@@ -488,14 +508,20 @@ class BootstrapFramework implements Framework
         'badge-pill' => 'rounded-full py-1 px-3',
         ];
 
-        foreach ($this->colors as $btColor => $twColor) {
-            if ($btColor === 'dark') {
-                $items['badge-'.$btColor] = 'text-white bg-black';
-            } elseif ($btColor == 'light') {
-                $items['badge-'.$btColor] = 'text-black bg-gray-300';
-            } else {
-                $items['badge-'.$btColor] = 'text-'.$twColor.'-800'.' bg-'.$twColor.'-300';
-            }
+        $colors = [
+            'primary'   => 'bg-blue-500 text-white hover:bg-blue-600',
+            'secondary' => 'bg-gray-600 text-white hover:bg-gray-700',
+            'success'   => 'bg-green-500 text-white hover:green-600',
+            'danger'    => 'bg-red-600 text-white hover:bg-red-700',
+            'warning'   => 'bg-orange-400 text-black hover:bg-orange-500',
+            'info'      => 'bg-teal-500 text-white hover:bg-teal-600',
+            'light'     => 'bg-gray-100 text-gray-800 hover:bg-gray-200',
+            'dark' => 'bg-gray-900 text-white',
+        ];
+
+
+        foreach ($colors as $btColor => $twColor) {
+                $items['badge-'.$btColor] = $twColor;
         }
 
         return $items;
@@ -512,25 +538,43 @@ class BootstrapFramework implements Framework
     protected function buttons(): array
     {
         $items = [
-        'btn' => 'inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline',
+        'btn' => 'inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded {tailwindo|py-1 px-3 leading-normal} no-underline',
         'btn-group' => 'relative inline-flex align-middle',
         'btn-group-vertical' => 'relative inline-flex align-middle flex-col items-start justify-center',
         'btn-toolbar' => 'flex flex-wrap justify-start',
-        'btn-link' => 'font-normal blue bg-transparent',
+        'btn-link' => 'font-normal text-blue-700 bg-transparent',
         'btn-block' => 'block w-full',
         ];
     
         foreach ([
-            'sm' => 'py-1 px-2 text-sm leading-tight',
-            'lg' => 'py-3 px-4 text-xl leading-tight',
+            'sm' => '{tailwindo|py-1 px-2 leading-tight} text-xs ',
+            'lg' => '{tailwindo|py-3 px-4 leading-tight} text-xl',
         ] as $btMedia => $twClasses) {
             $items['btn-'.$btMedia] = $twClasses;
             $items['btn-group-'.$btMedia] = $twClasses;
         }
 
-        foreach ($this->colors as $btColor => $twColor) {
-            $items['btn-'.$btColor] = 'text-'.$twColor.'-100 bg-'.$twColor.' hover:bg-'.$twColor.'-300';
-            $items['btn-outline-'.$btColor] = 'text-'.$twColor.'-700 border-'.$twColor.' bg-white hover:bg-'.$twColor.'-300 hover:text-'.$twColor.'-800';
+        $colors = [
+            'primary'   => 'bg-blue-600 text-white hover:bg-blue-600',
+            'secondary' => 'bg-gray-600 text-white hover:bg-gray-700',
+            'success'   => 'bg-green-500 text-white hover:green-600',
+            'danger'    => 'bg-red-600 text-white hover:bg-red-700',
+            'warning'   => 'bg-orange-400 text-black hover:bg-orange-500',
+            'info'      => 'bg-teal-500 text-white hover:bg-teal-600',
+            'light'     => 'bg-gray-100 text-gray-800 hover:bg-gray-200',
+            'dark' => 'bg-gray-900 text-white hover:bg-gray-900',
+        ];
+
+        foreach ($colors as $btColor => $twColor) {
+            $items['btn-'.$btColor] = $twColor;
+            $items['btn-outline-'.$btColor] = preg_replace_callback('/(?<!hover:)(text-[^\s]+|bg-[^\s]+)/i', function($m) {
+                if(strpos($m[1], 'bg-') !== false) {
+                    $color = str_replace('bg-', '', $m[1]);
+                    return 'text-'.$color.' border-'.$color . ' hover:bg-'.$color . ' hover:text-white';
+                } else {
+                    return 'bg-white';
+                }
+            }, $twColor);
         }
 
         return $items;
@@ -539,7 +583,13 @@ class BootstrapFramework implements Framework
     protected function cards(): array
     {
         return [
-        'card' => 'relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300',
+        'card' => function() {
+            if($this->isInLastSearches('card-deck')) {
+                return 'relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300';
+            } else {
+                return 'relative block md:flex w-full md:min-w-0 md:mx-4 flex-col flex-no-shrink flex-grow rounded break-words border bg-white border-1 border-gray-300';
+            }
+        },
         'card-body' => 'flex-auto p-6',
         'card-title' => 'mb-3',
         'card-text' => 'mb-0',
@@ -553,7 +603,7 @@ class BootstrapFramework implements Framework
         'card-img' => 'w-full rounded',
         'card-img-top' => 'w-full rounded rounded-t',
         'card-img-bottom' => 'w-full rounded rounded-b',
-        'card-deck' => 'flex flex-col sm:flex-wrap sm:-ml-1 sm:-mr-1',
+        'card-deck' => 'flex flex-row flex-wrap md:flex-no-wrap -mx-1',
         'card-group' => 'flex flex-col',
         ];
     }
@@ -625,6 +675,7 @@ class BootstrapFramework implements Framework
         'list-group-flush' => '',
         ];
 
+        //TODO
         foreach ($this->colors as $btColor => $twColor) {
             if ($btColor === 'dark') {
                 $items['list-group-item-'.$btColor] = 'text-white bg-gray-700';
@@ -679,15 +730,22 @@ class BootstrapFramework implements Framework
             return $navItemClasses;
         };
 
-        $items['navbar'] = 'relative flex flex-wrap items-center content-between py-2 px-4';
+        $items['navbar'] = 'relative flex flex-wrap items-center content-between py-3 px-4';
         $items['navbar-brand'] = 'inline-block pt-1 pb-1 mr-4 text-lg whitespace-no-wrap';
         $items['navbar-nav'] = 'flex flex-wrap list-reset pl-0 mb-0';
         $items['navbar-text'] = 'inline-block pt-2 pb-2';
+        $items['navbar-dark'] = 'text-white';
+        $items['navbar-light'] = 'text-black';
         $items['navbar-collapse'] = 'flex-grow items-center';
         $items['navbar-expand'] = 'flex-no-wrap content-start';
         $items['navbar-expand-{regex_string}'] = '';
         $items['navbar-toggler'] = 'py-1 px-2 text-md leading-normal bg-transparent border border-transparent rounded';
+    
 
+        //for now
+        $items['collapse'] = 'hidden';
+        $items['navbar-toggler-icon'] = 'px-5 py-1 border border-gray-600 rounded';
+    
         return $items;
     }
 

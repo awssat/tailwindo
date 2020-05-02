@@ -22,6 +22,8 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 
     ->addOption('replace', null, InputOption::VALUE_REQUIRED, 'This will overwrite the original file.', false)
 
+    ->addOption('utilities', null, InputOption::VALUE_REQUIRED, 'Save changes as utilities to a separate css file in the current directory.', false)
+
     ->addOption('recursive', 'r', InputOption::VALUE_OPTIONAL, 'This will recurs through all directories under the main directory', false)
 
     ->addOption('extensions', 'e', InputOption::VALUE_REQUIRED, 'This allows for custom extensions', 'php,html')

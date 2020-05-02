@@ -5,6 +5,6 @@ namespace Awssat\Tailwindo\Framework;
 interface Framework
 {
     function defaultCSS(): array;
-    function supportedVersion(): string;
+    function supportedVersion(): array;
     function get(): \Generator;
 }
