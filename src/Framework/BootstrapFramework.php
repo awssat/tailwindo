@@ -67,6 +67,8 @@ class BootstrapFramework implements Framework
             //https://getbootstrap.com/docs/4.4/content/typography/
             'del' => '',
             //..
+            'a' => '',
+            'p' => '',
         ];
     }
 
@@ -110,13 +112,13 @@ class BootstrapFramework implements Framework
     protected function general(): array
     {
         $mainClasses = [
-                'container-fluid' => 'container mx-auto px-4',
+                'container-fluid' => 'container max-w-full mx-auto sm:px-4',
                 'container'       => function() {
                     if($this->isInLastSearches('jumbotron', 1)) {
-                        return 'container mx-auto max-w-2xl  px-4';
+                        return 'container mx-auto max-w-2xl sm:px-4';
                     }
 
-                    return 'container mx-auto  px-4';
+                    return 'container mx-auto sm:px-4';
                 },
 
                 //http://getbootstrap.com/docs/4.0/utilities/close-icon/
@@ -167,11 +169,10 @@ class BootstrapFramework implements Framework
                 //http://getbootstrap.com/docs/4.0/components/jumbotron/
                 'jumbotron'       => 'py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded',
                 'jumbotron-fluid' => 'pr-0 pl-0 rounded-none',
-
         ];
 
         $mainClassesEachScreen = [
-            'container-{screen}'       => 'container-{screen} mx-auto',
+            'container-{screen}'       => 'container min-w-{screen} mx-auto sm:px-4',
         ];
 
         $items = [];
@@ -191,7 +192,7 @@ class BootstrapFramework implements Framework
     protected function grid(): array
     {
         $items =[
-            'row' => 'flex flex-wrap md:-mx-4',
+            'row' => 'flex flex-wrap ',
             'col' => 'relative flex-grow max-w-full flex-1 px-4',
         ];
 
@@ -225,7 +226,10 @@ class BootstrapFramework implements Framework
     protected function mediaObject(): array
     {
         //http://getbootstrap.com/docs/4.0/layout/media-object/
-        return [];
+        return [
+            'media' => 'flex items-start',
+            'media-body' => 'flex-1',
+        ];
     }
 
     protected function borders(): array
@@ -333,9 +337,7 @@ class BootstrapFramework implements Framework
 
             $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-nowrap'] = (empty($twMedia) ? '' : $twMedia.':').'flex-no-wrap';
 
-            foreach (range(1, 12) as $order) {
-                $items['order'.(empty($btMedia) ? '' : '-').$btMedia.'-'.$order] = '';
-            }
+            $items['order-'.$btMedia.'-{regex_number}'] = $twMedia.':order-{regex_number}';
         }
     
         return $items;
@@ -368,12 +370,21 @@ class BootstrapFramework implements Framework
     protected function spacing(): array
     {
         $items = [];
+        foreach (range(1, 5) as $spacing) {
+            $items['p-'.$spacing] = 'p-'.($spacing == 5 ? 7 : $spacing+2);
+            $items['m-'.$spacing] = 'm-'.($spacing == 5 ? 7 : $spacing+2);
+        }
 
         foreach ($this->mediaOptions as $btMedia => $twMedia) {
-            $items['m-'.$btMedia.'-{regex_number}'] = $twMedia.':m-{regex_number}';
-            $items['m{regex_string}-'.$btMedia.'-{regex_number}'] = $twMedia.':m{regex_string}-{regex_number}';
-            $items['p-'.$btMedia.'-{regex_number}'] = $twMedia.':p-{regex_number}';
-            $items['p{regex_string}-'.$btMedia.'-{regex_number}'] = $twMedia.':p{regex_string}-{regex_number}';
+            foreach(range(1, 5) as $spacing) {
+                $items['p-'.$btMedia.'-'.$spacing] = $twMedia.':p-'.($spacing == 5 ? 7 : $spacing+2);
+                $items['m-'.$btMedia.'-'.$spacing] = $twMedia.':m-'.($spacing == 5 ? 7 : $spacing+2);
+                $items['m{regex_string}-'.$btMedia.'-'.$spacing] = $twMedia.':m{regex_string}-'.($spacing == 5 ? 7 : $spacing+2);
+                $items['p{regex_string}-'.$btMedia.'-'.$spacing] = $twMedia.':p{regex_string}-'.($spacing == 5 ? 7 : $spacing+2);
+            }
+
+            $items['p{regex_string}-'.$btMedia.'-auto'] = $twMedia.':p{regex_string}-auto';
+            $items['m{regex_string}-'.$btMedia.'-auto'] = $twMedia.':m{regex_string}-auto';
         }
 
         return $items;
@@ -391,7 +402,7 @@ class BootstrapFramework implements Framework
 
         'initialism' => '',
         'lead' => 'text-xl font-light',
-        'small' => 'text-sm',
+        'small' => 'text-xs',
         'mark' => '',
         'display-1' => 'text-xl',
         'display-2' => 'text-2xl',
@@ -583,11 +594,13 @@ class BootstrapFramework implements Framework
     protected function cards(): array
     {
         return [
+        'card-deck' => 'flex flex-row flex-wrap md:flex-no-wrap -mx-1',
+        'card-group' => 'flex flex-col',
         'card' => function() {
             if($this->isInLastSearches('card-deck')) {
-                return 'relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300';
-            } else {
                 return 'relative block md:flex w-full md:min-w-0 md:mx-4 flex-col flex-no-shrink flex-grow rounded break-words border bg-white border-1 border-gray-300';
+            } else {
+                return 'relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300';
             }
         },
         'card-body' => 'flex-auto p-6',
@@ -603,8 +616,6 @@ class BootstrapFramework implements Framework
         'card-img' => 'w-full rounded',
         'card-img-top' => 'w-full rounded rounded-t',
         'card-img-bottom' => 'w-full rounded rounded-b',
-        'card-deck' => 'flex flex-row flex-wrap md:flex-no-wrap -mx-1',
-        'card-group' => 'flex flex-col',
         ];
     }
 

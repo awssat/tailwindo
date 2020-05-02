@@ -104,10 +104,16 @@ class Converter
     {
         $this->changes++;
 
-        $this->lastSearches[] = stripslashes($search);
+        $search = stripslashes($search);
 
-        if (count($this->lastSearches) >= 10) {
-            $this->lastSearches = array_slice($this->lastSearches, -10, 10, true);
+        if($this->isInLastSearches($search)) {
+            return;
+        }
+
+        $this->lastSearches[] = $search;
+
+        if (count($this->lastSearches) >= 50) {
+            array_shift($this->lastSearches);
         }
     }
 
