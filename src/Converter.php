@@ -39,9 +39,9 @@ class Converter
 
     public function setFramework(string $framework): self
     {
-        $framework = 'Awssat\\Tailwindo\\Framework\\' . ucfirst($framework).'Framework';
+        $framework = 'Awssat\\Tailwindo\\Framework\\'.ucfirst($framework).'Framework';
 
-        $this->framework = new $framework;
+        $this->framework = new $framework();
 
         return $this;
     }
@@ -68,10 +68,10 @@ class Converter
 
     public function convert(): self
     {
-        foreach($this->framework->get() as $item) {
-           foreach ($item as $search => $replace) {
-               $this->searchAndReplace($search, $replace);
-           }
+        foreach ($this->framework->get() as $item) {
+            foreach ($item as $search => $replace) {
+                $this->searchAndReplace($search, $replace);
+            }
         }
 
         return $this;
@@ -82,7 +82,7 @@ class Converter
      */
     public function get($getComponents = false): string
     {
-        if($getComponents) {
+        if ($getComponents) {
             return $this->getComponents();
         }
 
@@ -93,12 +93,12 @@ class Converter
 
     public function getComponents(): string
     {
-        if(! $this->generateComponents) {
+        if (!$this->generateComponents) {
             return '';
         }
 
         $result = '';
-        foreach($this->components as $selector => $classes) {
+        foreach ($this->components as $selector => $classes) {
             $result .= ".{$selector} {\n\t@apply {$classes};\n}\n";
         }
 
@@ -139,7 +139,7 @@ class Converter
 
         $search = stripslashes($search);
 
-        if($this->isInLastSearches($search)) {
+        if ($this->isInLastSearches($search)) {
             return;
         }
 
@@ -153,12 +153,12 @@ class Converter
     /**
      * Search the given content and replace.
      *
-     * @param string $search
+     * @param string          $search
      * @param string|\Closure $replace
      */
     protected function searchAndReplace($search, $replace): void
     {
-        if($replace instanceof \Closure) {
+        if ($replace instanceof \Closure) {
             $callableReplace = \Closure::bind($replace, $this, self::class);
             $replace = $callableReplace();
         }
@@ -185,10 +185,10 @@ class Converter
             break;
         }
 
-        if(! preg_match_all('/'.$regexStart.'(?<given>(?<![\-_.\w\d])'.$search.'(?![\-_.\w\d]))'.$regexEnd.'/i', $this->givenContent, $matches, PREG_SET_ORDER)) {
+        if (!preg_match_all('/'.$regexStart.'(?<given>(?<![\-_.\w\d])'.$search.'(?![\-_.\w\d]))'.$regexEnd.'/i', $this->givenContent, $matches, PREG_SET_ORDER)) {
             return;
         }
-  
+
         foreach ($matches as $match) {
             $result = preg_replace_callback(
                 '/(?<given>(?<![\-_.\w\d])'.$search.'(?![\-_.\w\d]))/',
@@ -196,24 +196,23 @@ class Converter
                     $replace = preg_replace_callback('/\$\{regex_(string|number)_(\d+)\}/', function ($m) use ($match) {
                         return $match['regex_'.$m[1].'_'.$m[2]];
                     }, $replace);
-                
-                    if($this->generateComponents && ! in_array($match['given'], $this->components)) {
+
+                    if ($this->generateComponents && !in_array($match['given'], $this->components)) {
                         $this->components[$match['given']] = preg_replace('/\{tailwindo\|([^\}]+)\}/', '$1', $replace);
                     }
-    
-                 return $replace;
-             },
+
+                    return $replace;
+                },
                 $match[0]
             );
 
             if (strcmp($match[0], $result) !== 0) {
-    
                 if ($count = preg_match_all('/\{tailwindo\|.*?\}/', $result)) {
                     if ($count > 1) {
                         $result = preg_replace('/\{tailwindo\|.*?\}/', '', $result, $count - 1);
                     }
                 }
-    
+
                 $this->givenContent = str_replace($match[0], $result, $this->givenContent);
                 $this->addToLastSearches($search);
             }
