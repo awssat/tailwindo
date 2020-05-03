@@ -30,7 +30,7 @@ class ConsoleHelper
 
     public function folderConvert(string $folderPath)
     {
-        $this->output->writeln('<fg=black;bg=blue>Converting Folder'.($this->components ? ' (extracted as components)' : '').':</> '.realpath($folderPath));
+        $this->output->writeln('<fg=black;bg=blue>Converting Folder'.($this->components ? ' (extracted to tailwindo-components.css)' : '').':</> '.realpath($folderPath));
 
         if ($this->recursive) {
             $iterator = new \RecursiveIteratorIterator(
@@ -64,7 +64,7 @@ class ConsoleHelper
         $filePath = realpath($filePath);
 
         if (!$this->folderConvert) {
-            $this->output->writeln('<fg=black;bg=blue>Converting FIle: '.($this->components ? '(extracted as components)' : '').'</> '.$filePath);
+            $this->output->writeln('<fg=black;bg=blue>Converting FIle: '.($this->components ? '(extracted to tailwindo-components.css)' : '').'</> '.$filePath);
         }
 
         if (!is_file($filePath)) {
