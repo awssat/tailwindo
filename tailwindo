@@ -22,7 +22,7 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 
     ->addOption('replace', null, InputOption::VALUE_REQUIRED, 'This will overwrite the original file.', false)
 
-    ->addOption('utilities', null, InputOption::VALUE_REQUIRED, 'Save changes as utilities to a separate css file in the current directory.', false)
+    ->addOption('components', null, InputOption::VALUE_REQUIRED, 'Extract changes as components to a separate css file in the current directory.', false)
 
     ->addOption('recursive', 'r', InputOption::VALUE_OPTIONAL, 'This will recurs through all directories under the main directory', false)
 
@@ -32,21 +32,14 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 
     ->setCode(function (InputInterface $input, OutputInterface $output) {
         // output arguments and options
-        $arg = $input->getFirstArgument();
-
-        $arg = trim($arg);
+        $arg = trim($input->getFirstArgument());
 
         if (empty($arg)) {
             $output->writeln('<comment>Oops! nothing to convert.</comment>');
             return -1;
         }
-        
 
-        $replace = (bool) $input->getOption('replace');
-
-        $is_recursive = (bool) $input->getOption('recursive');
-        
-        $acceptedExts = array_map('trim', array_map(function ($ext) {
+        $acceptedExtensions = array_map('trim', array_map(function ($ext) {
             return trim($ext, '.');
         }, array_filter(explode(',', $input->getOption('extensions')), function ($ext) {
             return !empty($ext);
@@ -59,7 +52,14 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
             return -1;
         }
 
-        $consoleHelper = new ConsoleHelper($output, $is_recursive, $replace, $acceptedExts, $framework);
+        $consoleHelper = new ConsoleHelper($output, [
+                'recursive' => (bool) $input->getOption('recursive'),
+                'overwrite' => (bool) $input->getOption('replace'),
+                'extensions' => $acceptedExtensions,
+                'framework' => $framework,
+                'components' => (bool) $input->getOption('components'),
+                'folderConvert' => is_dir($arg)
+            ]);
 
         //file?
         if (is_file($arg)) {

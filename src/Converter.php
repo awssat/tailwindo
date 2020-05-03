@@ -15,11 +15,14 @@ class Converter
     /** @var \Awssat\Tailwindo\Framework */
     protected $framework;
 
+    protected $generateComponents = false;
+
+    protected $components = [];
 
     public function __construct(?string $content = null)
     {
         if (!empty($content)) {
-            $this->givenContent = $content;
+            $this->setContent($content);
         }
 
         return $this;
@@ -28,6 +31,8 @@ class Converter
     public function setContent(string $content): self
     {
         $this->givenContent = $content;
+        $this->lastSearches = [];
+        $this->components = [];
 
         return $this;
     }
@@ -51,6 +56,16 @@ class Converter
         return $this;
     }
 
+    /**
+     * Is the given content a CSS content or HTML content.
+     */
+    public function setGenerateComponents(bool $value): self
+    {
+        $this->generateComponents = $value;
+
+        return $this;
+    }
+
     public function convert(): self
     {
         foreach($this->framework->get() as $item) {
@@ -65,11 +80,29 @@ class Converter
     /**
      * Get the converted content.
      */
-    public function get(): string
+    public function get($getComponents = false): string
     {
+        if($getComponents) {
+            return $this->getComponents();
+        }
+
         $this->givenContent = preg_replace('/\{tailwindo\|([^\}]+)\}/', '$1', $this->givenContent);
 
         return $this->givenContent;
+    }
+
+    public function getComponents(): string
+    {
+        if(! $this->generateComponents) {
+            return '';
+        }
+
+        $result = '';
+        foreach($this->components as $selector => $classes) {
+            $result .= ".{$selector} {\n\t@apply {$classes};\n}\n";
+        }
+
+        return $result;
     }
 
     /**
@@ -160,9 +193,15 @@ class Converter
             $result = preg_replace_callback(
                 '/(?<given>(?<![\-_.\w\d])'.$search.'(?![\-_.\w\d]))/',
                 function ($match) use ($replace) {
-                 return preg_replace_callback('/\$\{regex_(string|number)_(\d+)\}/', function ($m) use ($match) {
-                     return $match['regex_'.$m[1].'_'.$m[2]];
-                 }, $replace);
+                    $replace = preg_replace_callback('/\$\{regex_(string|number)_(\d+)\}/', function ($m) use ($match) {
+                        return $match['regex_'.$m[1].'_'.$m[2]];
+                    }, $replace);
+                
+                    if($this->generateComponents && ! in_array($match['given'], $this->components)) {
+                        $this->components[$match['given']] = preg_replace('/\{tailwindo\|([^\}]+)\}/', '$1', $replace);
+                    }
+    
+                 return $replace;
              },
                 $match[0]
             );
