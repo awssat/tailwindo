@@ -12,13 +12,17 @@ This tool can **convert Your CSS framework (currently Boostrap) classes** in HTM
 
 ## Features
 - Made to be easy to add more CSS frameworks in the future (currently Bootstrap).
-- Can covert single files/code snippets/folders.
+- Can convert single files/code snippets/folders.
 - Can extract changes to a separate css file as Tailwind components and keep old classes names. like: 
 ```
 .p-md-5 {
 	@apply md:p-7;
 }
 ```
+
+## Help Us
+- If you find unexpected conversion result, create an issue; if you managed to fix it, please create a PR.
+- If you are familiar with another CSS frameworks (like Foundation, Pure..), please create a PR and add it (see BootstrapFramework.php file).
 
 ## Docs
 You can start reading Tailwindo's docs on our website [ [docs](https://awssat.com/opensource/tailwindo) ].
