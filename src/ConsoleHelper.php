@@ -35,7 +35,8 @@ class ConsoleHelper
         if ($this->recursive) {
             $iterator = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator(
-                    $folderPath, \RecursiveDirectoryIterator::SKIP_DOTS
+                    $folderPath,
+                    \RecursiveDirectoryIterator::SKIP_DOTS
                 ),
                 \RecursiveIteratorIterator::SELF_FIRST,
                 \RecursiveIteratorIterator::CATCH_GET_CHILD
@@ -44,7 +45,7 @@ class ConsoleHelper
             $iterator = new \DirectoryIterator($folderPath);
         }
 
-        if($this->folderConvert && $this->components) {
+        if ($this->folderConvert && $this->components) {
             $this->newComponentsFile(realpath($folderPath));
         }
 
@@ -62,7 +63,7 @@ class ConsoleHelper
         //just in case
         $filePath = realpath($filePath);
 
-        if (! $this->folderConvert) {
+        if (!$this->folderConvert) {
             $this->output->writeln('<fg=black;bg=blue>Converting FIle: '.($this->components ? '(extracted as components)' : '').'</> '.$filePath);
         }
 
@@ -93,8 +94,8 @@ class ConsoleHelper
         if ($content !== $newContent) {
             $this->output->writeln('<info>processed: </info>'.basename($newFilePath));
 
-            if($this->components) {
-                if(! $this->folderConvert) {
+            if ($this->components) {
+                if (!$this->folderConvert) {
                     $this->newComponentsFile(dirname($filePath));
                 }
 
@@ -115,10 +116,10 @@ class ConsoleHelper
                     ->convert()
                     ->get($this->components);
 
-        if (! empty($convertedCode)) {
+        if (!empty($convertedCode)) {
             $this->output->writeln('<info>Converted Code: </info>'.$convertedCode);
         } else {
-            $this->output->writeln('<comment>Nothing generated! It means that TailwindCSS has no equivalent for that classes,'. 
+            $this->output->writeln('<comment>Nothing generated! It means that TailwindCSS has no equivalent for that classes,'.
                     'or it has exactly classes with the same name.</comment>');
         }
     }
@@ -133,16 +134,16 @@ class ConsoleHelper
 
     protected function writeComponentsToFile($code, $path)
     {
-       $cssFilePath = $path . '/tailwindo-components.css';
+        $cssFilePath = $path.'/tailwindo-components.css';
 
-       file_put_contents($cssFilePath, $code . PHP_EOL, FILE_APPEND);
+        file_put_contents($cssFilePath, $code.PHP_EOL, FILE_APPEND);
     }
 
     protected function newComponentsFile($path)
     {
-        $cssFilePath = $path . '/tailwindo-components.css';
+        $cssFilePath = $path.'/tailwindo-components.css';
 
-        if(file_exists($cssFilePath)) {
+        if (file_exists($cssFilePath)) {
             unlink($cssFilePath);
         }
 
