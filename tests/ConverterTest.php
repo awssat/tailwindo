@@ -23,7 +23,7 @@ class ConverterTest extends TestCase
             $this->converter->classesOnly(true)->setContent('d-sm-flex')->convert()->get()
         );
         $this->assertEquals(
-            '<a class="text-gray-500">love</a>',
+            '<a class="text-gray-700">love</a>',
             $this->converter->setContent('<a class="text-muted">love</a>')->convert()->get()
         );
     }
