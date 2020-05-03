@@ -6,7 +6,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ConsoleHelper
 {
+    /** @var \Awssat\Tailwindo\Converter */
     protected $converter;
+
     protected $output;
     protected $recursive = false;
     protected $overwrite;
@@ -30,7 +32,14 @@ class ConsoleHelper
 
     public function folderConvert(string $folderPath)
     {
+        [$frameworkVersion, $TailwindVersion] = $this->converter->getFramework()->supportedVersion();
+
         $this->output->writeln('<fg=black;bg=blue>Converting Folder'.($this->components ? ' (extracted to tailwindo-components.css)' : '').':</> '.realpath($folderPath));
+        $this->output->writeln(
+                        '<fg=black;bg=green>Converting from</> '.$this->converter->getFramework()->frameworkName().' '.
+                        $frameworkVersion . ' <fg=black;bg=green> to </> Tailwind '. $TailwindVersion
+                    );
+
 
         if ($this->recursive) {
             $iterator = new \RecursiveIteratorIterator(
@@ -65,6 +74,12 @@ class ConsoleHelper
 
         if (!$this->folderConvert) {
             $this->output->writeln('<fg=black;bg=blue>Converting FIle: '.($this->components ? '(extracted to tailwindo-components.css)' : '').'</> '.$filePath);
+
+            [$frameworkVersion, $TailwindVersion] = $this->converter->getFramework()->supportedVersion();
+            $this->output->writeln(
+                '<fg=black;bg=green>Converting from</> '.$this->converter->getFramework()->frameworkName().' '.
+                $frameworkVersion . ' <fg=black;bg=green> to </> Tailwind '. $TailwindVersion .PHP_EOL
+            );
         }
 
         if (!is_file($filePath)) {

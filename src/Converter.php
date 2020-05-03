@@ -12,7 +12,7 @@ class Converter
 
     protected $lastSearches = [];
 
-    /** @var \Awssat\Tailwindo\Framework */
+    /** @var \Awssat\Tailwindo\Framework\Framework */
     protected $framework;
 
     protected $generateComponents = false;
@@ -46,6 +46,11 @@ class Converter
         return $this;
     }
 
+    public function getFramework(): \Awssat\Tailwindo\Framework\Framework
+    {
+        return $this->framework;
+    }
+
     /**
      * Is the given content a CSS content or HTML content.
      */
@@ -68,7 +73,7 @@ class Converter
 
     public function convert(): self
     {
-        foreach ($this->framework->get() as $item) {
+        foreach ($this->getFramework()->get() as $item) {
             foreach ($item as $search => $replace) {
                 $this->searchAndReplace($search, $replace);
             }

@@ -41,14 +41,19 @@ class BootstrapFramework implements Framework
         'muted'     => 'gray-700',
     ];
 
+    public function frameworkName(): string
+    {
+        return 'Bootstrap';
+    }
+
     public function supportedVersion(): array
     {
         /**
          * latest versions of Bootstrap/Tailwind during the coding of this file.
          */
         return [
-            'framework' => '4.4.1',
-            'tailwind'  => '1.4.0',
+            '4.4.1', // bootstrap
+            '1.4.0', //tailwind
         ];
     }
 
