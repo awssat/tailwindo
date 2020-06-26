@@ -16,7 +16,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function it_return_output()
+    public function it_returns_output()
     {
         $this->assertEquals(
             'sm:flex',
@@ -27,4 +27,5 @@ class ConverterTest extends TestCase
             $this->converter->setContent('<a class="text-muted">love</a>')->convert()->get()
         );
     }
+
 }
