@@ -104,10 +104,10 @@ class Converter
 
         $result = '';
         foreach ($this->components as $selector => $classes) {
-            if($selector == $classes) {
+            if ($selector == $classes) {
                 continue;
             }
-    
+
             $result .= ".{$selector} {\n\t@apply {$classes};\n}\n";
         }
 

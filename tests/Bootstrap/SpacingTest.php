@@ -15,13 +15,13 @@ class SpacingTest extends TestCase
         $this->converter = (new Converter())->setFramework('bootstrap');
     }
 
-
     // https://getbootstrap.com/docs/4.0/utilities/spacing/
     // https://tailwindcss.com/docs/padding/
 
     /**
-    * @group Padding
-    */
+     * @group Padding
+     */
+
     /** @test */
     public function padding_it_converts_on_all_sides()
     {
@@ -55,7 +55,6 @@ class SpacingTest extends TestCase
             $this->converter->classesOnly(true)->setContent('p-xl-5')->convert()->get()
         );
     }
-
 
     /** @test */
     public function padding_it_converts_on_y()
@@ -140,8 +139,8 @@ class SpacingTest extends TestCase
     }
 
     /**
-    * @group Margin
-    */
+     * @group Margin
+     */
 
     /** @test */
     public function margin_it_converts_on_all_sides()
@@ -176,7 +175,6 @@ class SpacingTest extends TestCase
             $this->converter->classesOnly(true)->setContent('m-xl-5')->convert()->get()
         );
     }
-
 
     /** @test */
     public function margin_it_converts_on_y()
@@ -259,5 +257,4 @@ class SpacingTest extends TestCase
             $this->converter->classesOnly(true)->setContent('my-lg-0')->convert()->get()
         );
     }
-
 }
