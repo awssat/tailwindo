@@ -385,20 +385,20 @@ class BootstrapFramework implements Framework
         $spacingProperties = ['p', 'm'];
 
         foreach ($spacingProperties as $property) {
-          foreach ($this->spacings as $btSpacing => $twSpacing) {
-                $items[$property.'-'.$btSpacing] = $property.'-'.$twSpacing;
-            }
+            foreach ($this->spacings as $btSpacing => $twSpacing) {
+                  $items[$property.'-'.$btSpacing] = $property.'-'.$twSpacing;
+              }
         }
 
         foreach ($spacingProperties as $property) {
-          foreach ($this->mediaOptions as $btMedia => $twMedia) {
-            foreach ($this->spacings as $btSpacing => $twSpacing) {
-                $items[$property.'-'.$btMedia.'-'.$btSpacing] = $twMedia.':'.$property.'-'.$twSpacing;
-                $items[$property.'{regex_string}-'.$btMedia.'-'.$btSpacing] = $twMedia.':'.$property.'{regex_string}-'.$twSpacing;
-            }
+            foreach ($this->mediaOptions as $btMedia => $twMedia) {
+                foreach ($this->spacings as $btSpacing => $twSpacing) {
+                    $items[$property.'-'.$btMedia.'-'.$btSpacing] = $twMedia.':'.$property.'-'.$twSpacing;
+                    $items[$property.'{regex_string}-'.$btMedia.'-'.$btSpacing] = $twMedia.':'.$property.'{regex_string}-'.$twSpacing;
+                }
 
-            $items[$property.'{regex_string}-'.$btMedia.'-auto'] = $twMedia.':'.$property.'{regex_string}-auto';
-        }
+              $items[$property.'{regex_string}-'.$btMedia.'-auto'] = $twMedia.':'.$property.'{regex_string}-auto';
+          }
       }
 
         return $items;

@@ -20,8 +20,8 @@ class SpacingTest extends TestCase
     // https://tailwindcss.com/docs/padding/
 
     /**
-     * @group Padding
-     */
+    * @group Padding
+    */
     /** @test */
     public function padding_it_converts_on_all_sides()
     {
@@ -140,124 +140,124 @@ class SpacingTest extends TestCase
     }
 
     /**
-     * @group Margin
-     */
+    * @group Margin
+    */
 
-     /** @test */
-     public function margin_it_converts_on_all_sides()
-     {
-         $this->assertEquals(
-             'm-1',
-             $this->converter->classesOnly(true)->setContent('m-1')->convert()->get()
-         );
+    /** @test */
+    public function margin_it_converts_on_all_sides()
+    {
+        $this->assertEquals(
+            'm-1',
+            $this->converter->classesOnly(true)->setContent('m-1')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'sm:m-1',
-             $this->converter->classesOnly(true)->setContent('m-sm-1')->convert()->get()
-         );
+        $this->assertEquals(
+            'sm:m-1',
+            $this->converter->classesOnly(true)->setContent('m-sm-1')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'md:m-2',
-             $this->converter->classesOnly(true)->setContent('m-md-2')->convert()->get()
-         );
+        $this->assertEquals(
+            'md:m-2',
+            $this->converter->classesOnly(true)->setContent('m-md-2')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'lg:m-4',
-             $this->converter->classesOnly(true)->setContent('m-lg-3')->convert()->get()
-         );
+        $this->assertEquals(
+            'lg:m-4',
+            $this->converter->classesOnly(true)->setContent('m-lg-3')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'xl:m-6',
-             $this->converter->classesOnly(true)->setContent('m-xl-4')->convert()->get()
-         );
+        $this->assertEquals(
+            'xl:m-6',
+            $this->converter->classesOnly(true)->setContent('m-xl-4')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'xl:m-12',
-             $this->converter->classesOnly(true)->setContent('m-xl-5')->convert()->get()
-         );
-     }
+        $this->assertEquals(
+            'xl:m-12',
+            $this->converter->classesOnly(true)->setContent('m-xl-5')->convert()->get()
+        );
+    }
 
 
-     /** @test */
-     public function margin_it_converts_on_y()
-     {
-         $this->assertEquals(
-             'my-1',
-             $this->converter->classesOnly(true)->setContent('my-1')->convert()->get()
-         );
+    /** @test */
+    public function margin_it_converts_on_y()
+    {
+        $this->assertEquals(
+            'my-1',
+            $this->converter->classesOnly(true)->setContent('my-1')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'sm:my-1',
-             $this->converter->classesOnly(true)->setContent('my-sm-1')->convert()->get()
-         );
+        $this->assertEquals(
+            'sm:my-1',
+            $this->converter->classesOnly(true)->setContent('my-sm-1')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'md:my-2',
-             $this->converter->classesOnly(true)->setContent('my-md-2')->convert()->get()
-         );
+        $this->assertEquals(
+            'md:my-2',
+            $this->converter->classesOnly(true)->setContent('my-md-2')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'lg:my-4',
-             $this->converter->classesOnly(true)->setContent('my-lg-3')->convert()->get()
-         );
+        $this->assertEquals(
+            'lg:my-4',
+            $this->converter->classesOnly(true)->setContent('my-lg-3')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'xl:my-6',
-             $this->converter->classesOnly(true)->setContent('my-xl-4')->convert()->get()
-         );
+        $this->assertEquals(
+            'xl:my-6',
+            $this->converter->classesOnly(true)->setContent('my-xl-4')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'xl:my-12',
-             $this->converter->classesOnly(true)->setContent('my-xl-5')->convert()->get()
-         );
-     }
+        $this->assertEquals(
+            'xl:my-12',
+            $this->converter->classesOnly(true)->setContent('my-xl-5')->convert()->get()
+        );
+    }
 
-     /** @test */
-     public function margin_it_converts_on_x()
-     {
-         $this->assertEquals(
-             'mx-1',
-             $this->converter->classesOnly(true)->setContent('mx-1')->convert()->get()
-         );
+    /** @test */
+    public function margin_it_converts_on_x()
+    {
+        $this->assertEquals(
+            'mx-1',
+            $this->converter->classesOnly(true)->setContent('mx-1')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'sm:mx-1',
-             $this->converter->classesOnly(true)->setContent('mx-sm-1')->convert()->get()
-         );
+        $this->assertEquals(
+            'sm:mx-1',
+            $this->converter->classesOnly(true)->setContent('mx-sm-1')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'md:mx-2',
-             $this->converter->classesOnly(true)->setContent('mx-md-2')->convert()->get()
-         );
+        $this->assertEquals(
+            'md:mx-2',
+            $this->converter->classesOnly(true)->setContent('mx-md-2')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'lg:mx-4',
-             $this->converter->classesOnly(true)->setContent('mx-lg-3')->convert()->get()
-         );
+        $this->assertEquals(
+            'lg:mx-4',
+            $this->converter->classesOnly(true)->setContent('mx-lg-3')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'xl:mx-6',
-             $this->converter->classesOnly(true)->setContent('mx-xl-4')->convert()->get()
-         );
+        $this->assertEquals(
+            'xl:mx-6',
+            $this->converter->classesOnly(true)->setContent('mx-xl-4')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'xl:mx-12',
-             $this->converter->classesOnly(true)->setContent('mx-xl-5')->convert()->get()
-         );
-     }
+        $this->assertEquals(
+            'xl:mx-12',
+            $this->converter->classesOnly(true)->setContent('mx-xl-5')->convert()->get()
+        );
+    }
 
-     /** @test */
-     public function margin_it_converts_0_on_all_sides()
-     {
-         $this->assertEquals(
-             'm-0',
-             $this->converter->classesOnly(true)->setContent('m-0')->convert()->get()
-         );
+    /** @test */
+    public function margin_it_converts_0_on_all_sides()
+    {
+        $this->assertEquals(
+            'm-0',
+            $this->converter->classesOnly(true)->setContent('m-0')->convert()->get()
+        );
 
-         $this->assertEquals(
-             'lg:my-0',
-             $this->converter->classesOnly(true)->setContent('my-lg-0')->convert()->get()
-         );
-     }
+        $this->assertEquals(
+            'lg:my-0',
+            $this->converter->classesOnly(true)->setContent('my-lg-0')->convert()->get()
+        );
+    }
 
 }

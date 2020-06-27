@@ -27,5 +27,4 @@ class ConverterTest extends TestCase
             $this->converter->setContent('<a class="text-muted">love</a>')->convert()->get()
         );
     }
-
 }
