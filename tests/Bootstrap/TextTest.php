@@ -27,5 +27,4 @@ class TextTest extends TestCase
             $this->converter->classesOnly(true)->setContent('text-lg-justify')->convert()->get()
         );
     }
-
 }
