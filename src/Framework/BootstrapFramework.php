@@ -428,11 +428,10 @@ class BootstrapFramework implements Framework
             'font-italic'        => 'italic',
         ];
 
-        foreach (array_merge($this->mediaOptions, [''=>'']) as $btMedia => $twMedia) {
-            $items['text'.(empty($btMedia) ? '' : '-').'-'.$btMedia.'-left'] = (empty($twMedia) ? '' : $twMedia.':').'text-left';
-            $items['text'.(empty($btMedia) ? '' : '-').'-'.$btMedia.'-right'] = (empty($twMedia) ? '' : $twMedia.':').'text-right';
-            $items['text'.(empty($btMedia) ? '' : '-').'-'.$btMedia.'-center'] = (empty($twMedia) ? '' : $twMedia.':').'text-center';
-            $items['text'.(empty($btMedia) ? '' : '-').'-'.$btMedia.'-justify'] = (empty($twMedia) ? '' : $twMedia.':').'text-justify';
+        foreach (['left', 'right', 'center', 'justify'] as $alignment) {
+            foreach (array_merge($this->mediaOptions, [''=>'']) as $btMedia => $twMedia) {
+                $items['text'.(empty($btMedia) ? '' : '-'.$btMedia).'-'.$alignment] = (empty($twMedia) ? '' : $twMedia.':').'text-'.$alignment;
+            }
         }
 
         return $items;
