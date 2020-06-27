@@ -386,8 +386,8 @@ class BootstrapFramework implements Framework
 
         foreach ($spacingProperties as $property) {
             foreach ($this->spacings as $btSpacing => $twSpacing) {
-                  $items[$property.'-'.$btSpacing] = $property.'-'.$twSpacing;
-              }
+                $items[$property.'-'.$btSpacing] = $property.'-'.$twSpacing;
+            }
         }
 
         foreach ($spacingProperties as $property) {
@@ -397,9 +397,9 @@ class BootstrapFramework implements Framework
                     $items[$property.'{regex_string}-'.$btMedia.'-'.$btSpacing] = $twMedia.':'.$property.'{regex_string}-'.$twSpacing;
                 }
 
-              $items[$property.'{regex_string}-'.$btMedia.'-auto'] = $twMedia.':'.$property.'{regex_string}-auto';
-          }
-      }
+                $items[$property.'{regex_string}-'.$btMedia.'-auto'] = $twMedia.':'.$property.'{regex_string}-auto';
+            }
+        }
 
         return $items;
     }
