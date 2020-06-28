@@ -340,7 +340,9 @@ class BootstrapFramework implements Framework
 
             $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-nowrap'] = (empty($twMedia) ? '' : $twMedia.':').'flex-no-wrap';
 
-            $items['order-'.$btMedia.'-{regex_number}'] = $twMedia.':order-{regex_number}';
+            if ($btMedia != '') {
+                $items['order-'.$btMedia.'-{regex_number}'] = $twMedia.':order-{regex_number}';
+            }
         }
 
         return $items;
