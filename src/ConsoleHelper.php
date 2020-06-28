@@ -36,10 +36,9 @@ class ConsoleHelper
 
         $this->output->writeln('<fg=black;bg=blue>Converting Folder'.($this->components ? ' (extracted to tailwindo-components.css)' : '').':</> '.realpath($folderPath));
         $this->output->writeln(
-                        '<fg=black;bg=green>Converting from</> '.$this->converter->getFramework()->frameworkName().' '.
-                        $frameworkVersion . ' <fg=black;bg=green> to </> Tailwind '. $TailwindVersion
-                    );
-
+            '<fg=black;bg=green>Converting from</> '.$this->converter->getFramework()->frameworkName().' '.
+                        $frameworkVersion.' <fg=black;bg=green> to </> Tailwind '.$TailwindVersion
+        );
 
         if ($this->recursive) {
             $iterator = new \RecursiveIteratorIterator(
@@ -78,7 +77,7 @@ class ConsoleHelper
             [$frameworkVersion, $TailwindVersion] = $this->converter->getFramework()->supportedVersion();
             $this->output->writeln(
                 '<fg=black;bg=green>Converting from</> '.$this->converter->getFramework()->frameworkName().' '.
-                $frameworkVersion . ' <fg=black;bg=green> to </> Tailwind '. $TailwindVersion .PHP_EOL
+                $frameworkVersion.' <fg=black;bg=green> to </> Tailwind '.$TailwindVersion.PHP_EOL
             );
         }
 
