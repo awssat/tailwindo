@@ -2,11 +2,11 @@
 
 namespace Awssat\Tailwindo\Test;
 
-use PHPUnit\Framework\TestCase;
-use Awssat\Tailwindo\Framework\BootstrapFramework;
 use Awssat\Tailwindo\Converter;
+use Awssat\Tailwindo\Framework\BootstrapFramework;
+use PHPUnit\Framework\TestCase;
 
-class FrameworkTest extends TestCase
+class BootstrapFrameworkTest extends TestCase
 {
     /** @var Awssat\Tailwindo\Converter */
     protected $bootstrap;
