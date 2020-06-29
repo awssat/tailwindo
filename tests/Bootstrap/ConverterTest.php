@@ -16,7 +16,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function it_return_output()
+    public function it_returns_output()
     {
         $this->assertEquals(
             'sm:flex',

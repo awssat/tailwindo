@@ -13,6 +13,15 @@ class BootstrapFramework implements Framework
         'print' => 'print',
     ];
 
+    protected $spacings = [
+        '0'  => '0',
+        '1'  => '1',
+        '2'  => '2',
+        '3'  => '4',
+        '4'  => '6',
+        '5'  => '12',
+    ];
+
     protected $grid = [
         '1'  => '1/6',
         '2'  => '1/5',
@@ -375,21 +384,23 @@ class BootstrapFramework implements Framework
     protected function spacing(): array
     {
         $items = [];
-        foreach (range(1, 5) as $spacing) {
-            $items['p-'.$spacing] = 'p-'.($spacing == 5 ? 7 : $spacing + 2);
-            $items['m-'.$spacing] = 'm-'.($spacing == 5 ? 7 : $spacing + 2);
+        $spacingProperties = ['p', 'm'];
+
+        foreach ($spacingProperties as $property) {
+            foreach ($this->spacings as $btSpacing => $twSpacing) {
+                $items[$property.'-'.$btSpacing] = $property.'-'.$twSpacing;
+            }
         }
 
-        foreach ($this->mediaOptions as $btMedia => $twMedia) {
-            foreach (range(1, 5) as $spacing) {
-                $items['p-'.$btMedia.'-'.$spacing] = $twMedia.':p-'.($spacing == 5 ? 7 : $spacing + 2);
-                $items['m-'.$btMedia.'-'.$spacing] = $twMedia.':m-'.($spacing == 5 ? 7 : $spacing + 2);
-                $items['m{regex_string}-'.$btMedia.'-'.$spacing] = $twMedia.':m{regex_string}-'.($spacing == 5 ? 7 : $spacing + 2);
-                $items['p{regex_string}-'.$btMedia.'-'.$spacing] = $twMedia.':p{regex_string}-'.($spacing == 5 ? 7 : $spacing + 2);
-            }
+        foreach ($spacingProperties as $property) {
+            foreach ($this->mediaOptions as $btMedia => $twMedia) {
+                foreach ($this->spacings as $btSpacing => $twSpacing) {
+                    $items[$property.'-'.$btMedia.'-'.$btSpacing] = $twMedia.':'.$property.'-'.$twSpacing;
+                    $items[$property.'{regex_string}-'.$btMedia.'-'.$btSpacing] = $twMedia.':'.$property.'{regex_string}-'.$twSpacing;
+                }
 
-            $items['p{regex_string}-'.$btMedia.'-auto'] = $twMedia.':p{regex_string}-auto';
-            $items['m{regex_string}-'.$btMedia.'-auto'] = $twMedia.':m{regex_string}-auto';
+                $items[$property.'{regex_string}-'.$btMedia.'-auto'] = $twMedia.':'.$property.'{regex_string}-auto';
+            }
         }
 
         return $items;
