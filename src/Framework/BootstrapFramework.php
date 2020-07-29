@@ -149,7 +149,7 @@ class BootstrapFramework implements Framework
             'text-hide' => '',
 
             // http://getbootstrap.com/docs/4.0/utilities/screenreaders/
-            // 'sr-only'           => 'sr-only',
+            'sr-only'           => 'sr-only',
             'sr-only-focusable' => 'focus:not-sr-only',
 
             // http://getbootstrap.com/docs/4.0/content/images/
