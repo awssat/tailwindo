@@ -514,8 +514,8 @@ class BootstrapFramework implements Framework
             'secondary' => 'bg-gray-300 border-gray-400 text-gray-800',
             'success'   => 'bg-green-200 border-green-300 text-green-800',
             'danger'    => 'bg-red-200 border-red-300 text-red-800',
-            'warning'   => 'bg-orange-200 bg-orange-300 bg-orange-800',
-            'info'      => 'bg-teal-200 bg-teal-300 bg-teal-800',
+            'warning'   => 'bg-orange-200 border-orange-300 text-orange-800',
+            'info'      => 'bg-teal-200 border-teal-300 text-teal-800',
             'light'     => 'bg-white text-gray-600',
             'dark'      => 'bg-gray-400 border-gray-500 text-gray-900',
         ];
