@@ -20,7 +20,8 @@ class ConsoleHelper
     {
         $this->converter = (new Converter())
                                 ->setFramework($settings['framework'] ?? 'bootstrap')
-                                ->setGenerateComponents($settings['components'] ?? false);
+                                ->setGenerateComponents($settings['components'] ?? false)
+                                ->setPrefix($settings['prefix'] ?? '');
 
         $this->output = $output;
         $this->recursive = $settings['recursive'] ?? false;

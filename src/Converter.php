@@ -19,6 +19,9 @@ class Converter
 
     protected $components = [];
 
+    /** @var string */
+    protected $prefix = '';
+
     public function __construct(?string $content = null)
     {
         if (!empty($content)) {
@@ -67,6 +70,20 @@ class Converter
     public function setGenerateComponents(bool $value): self
     {
         $this->generateComponents = $value;
+
+        return $this;
+    }
+
+    /**
+     * The prefix option allows you to add a custom prefix to all of Tailwind's generated utility classes. This can be really useful when layering Tailwind on top of existing CSS where there might be naming conflicts.
+     *
+     * @param string $prefix
+     *
+     * @return Converter
+     */
+    public function setPrefix(string $prefix): self
+    {
+        $this->prefix = trim($prefix);
 
         return $this;
     }
@@ -210,7 +227,16 @@ class Converter
                         $this->components[$match['given']] = preg_replace('/\{tailwindo\|([^\}]+)\}/', '$1', $replace);
                     }
 
-                    return $replace;
+                    return $this->prefix ? trim(implode(' ', array_filter(array_map(function ($class) {
+                        if ($responsiveOrStatePrefix = substr($class, 0, strpos($class, ':'))) {
+                            $utilityName = str_replace($responsiveOrStatePrefix . ':', '', $class);
+
+                            return "{$responsiveOrStatePrefix}:{$this->prefix}{$utilityName}";
+                        } elseif ($class) {
+                            return "{$this->prefix}{$class}";
+                        }
+                        return $class;
+                    }, explode(' ', $replace))))) : $replace;
                 },
                 $match[0]
             );
