@@ -19,8 +19,8 @@ class Converter
 
     protected $components = [];
 
-    /** @var string */
-    protected $prefix = '';
+    /** @var string|null */
+    protected $prefix;
 
     public function __construct(?string $content = null)
     {
@@ -83,7 +83,10 @@ class Converter
      */
     public function setPrefix(string $prefix): self
     {
-        $this->prefix = trim($prefix);
+        $prefix = trim($prefix);
+        if (!empty($prefix)) {
+            $this->prefix = $prefix;
+        }
 
         return $this;
     }
@@ -227,16 +230,26 @@ class Converter
                         $this->components[$match['given']] = preg_replace('/\{tailwindo\|([^\}]+)\}/', '$1', $replace);
                     }
 
-                    return $this->prefix ? trim(implode(' ', array_filter(array_map(function ($class) {
-                        if ($responsiveOrStatePrefix = substr($class, 0, strpos($class, ':'))) {
-                            $utilityName = str_replace($responsiveOrStatePrefix . ':', '', $class);
+                    if ($this->prefix) {
+                        $arr = explode(' ', $replace);
+                        $arr = array_map(function ($class) {
+                            $responsiveOrStatePrefix = substr($class, 0, strpos($class, ':'));
+                            if ($responsiveOrStatePrefix) {
+                                $utilityName = str_replace($responsiveOrStatePrefix.':', '', $class);
 
-                            return "{$responsiveOrStatePrefix}:{$this->prefix}{$utilityName}";
-                        } elseif ($class) {
-                            return "{$this->prefix}{$class}";
-                        }
-                        return $class;
-                    }, explode(' ', $replace))))) : $replace;
+                                return "{$responsiveOrStatePrefix}:{$this->prefix}{$utilityName}";
+                            } elseif ($class) {
+                                return "{$this->prefix}{$class}";
+                            }
+
+                            return $class;
+                        }, $arr);
+                        $arr = array_filter($arr);
+
+                        return trim(implode(' ', $arr));
+                    }
+
+                    return $replace;
                 },
                 $match[0]
             );
