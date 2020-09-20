@@ -27,4 +27,18 @@ class ConverterTest extends TestCase
             $this->converter->setContent('<a class="text-muted">love</a>')->convert()->get()
         );
     }
+
+    /** @test */
+    public function it_returns_output_with_prefix()
+    {
+        $this->converter->setPrefix('tw-');
+        $this->assertEquals(
+            'sm:tw-flex',
+            $this->converter->classesOnly(true)->setContent('d-sm-flex')->convert()->get()
+        );
+        $this->assertEquals(
+            '<a class="tw-text-gray-700">love</a>',
+            $this->converter->setContent('<a class="text-muted">love</a>')->convert()->get()
+        );
+    }
 }

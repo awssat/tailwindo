@@ -30,6 +30,8 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 
     ->addOption('framework', 't', InputOption::VALUE_REQUIRED, 'CSS Framework type to convert', 'bootstrap')
 
+    ->addOption('prefix', 'p', InputOption::VALUE_REQUIRED, 'This allows you to add a custom prefix to all of Tailwind\'s generated utility classes', '')
+
     ->setCode(function (InputInterface $input, OutputInterface $output) {
         // output arguments and options
         $arg = trim($input->getFirstArgument());
@@ -58,6 +60,7 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
                 'extensions' => $acceptedExtensions,
                 'framework' => $framework,
                 'components' => (bool) $input->getOption('components'),
+                'prefix' => $input->getOption('prefix'),
                 'folderConvert' => is_dir($arg)
             ]);
 
