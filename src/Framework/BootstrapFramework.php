@@ -370,7 +370,7 @@ class BootstrapFramework implements Framework
             $items['w-'.$btClass] = 'w-'.$twClass;
 
             //no percentages in TW for heights except for full
-            if ($btClass === '100') {
+            if ($btClass === 100) {
                 $items['h-'.$btClass] = 'h-'.$twClass;
             }
         }
