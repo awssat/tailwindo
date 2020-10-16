@@ -31,7 +31,7 @@ class BootstrapFrameworkTest extends TestCase
             }
         }
 
-        print_r($match_array);
+        // print_r($match_array);
         $this->assertEmpty($match_array);
     }
 
