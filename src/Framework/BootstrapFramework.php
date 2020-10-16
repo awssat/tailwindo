@@ -134,9 +134,6 @@ class BootstrapFramework implements Framework
                 return 'container mx-auto sm:px-4';
             },
 
-            //http://getbootstrap.com/docs/4.0/utilities/close-icon/
-            'close' => 'p-0 bg-transparent border-0 appearance-none',
-
             //http://getbootstrap.com/docs/4.0/utilities/embed/
             'embed-responsive'       => '',
             'embed-responsive-item'  => '',
@@ -177,6 +174,7 @@ class BootstrapFramework implements Framework
             // 'collapse' => 'hidden',
             'collapsing' => 'relative h-0 overflow-hidden ', //there should be a h-0
 
+            //http://getbootstrap.com/docs/4.0/utilities/close-icon/
             'close' => 'absolute top-0 bottom-0 right-0 px-4 py-3',
 
             //http://getbootstrap.com/docs/4.0/components/jumbotron/
