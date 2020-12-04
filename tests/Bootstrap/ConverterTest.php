@@ -41,4 +41,13 @@ class ConverterTest extends TestCase
             $this->converter->setContent('<a class="text-muted">love</a>')->convert()->get()
         );
     }
+
+    /** @test */
+    public function it_handles_jsx_class_name()
+    {
+        $this->assertEquals(
+            '<a className="sm:flex text-gray-700">love</a>',
+            $this->converter->setContent('<a className="d-sm-flex text-muted">love</a>')->convert()->get()
+        );
+    }
 }
