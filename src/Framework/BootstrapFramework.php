@@ -325,6 +325,10 @@ class BootstrapFramework implements Framework
                 $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-'.$key] = (empty($twMedia) ? '' : $twMedia.':').'flex-'.str_replace('column', 'col', $key);
             }
 
+            foreach (['grow-0', 'grow-1', 'shrink-0', 'shrink-1'] as $key) {
+                $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-'.$key] = (empty($twMedia) ? '' : $twMedia.':').'flex-'.str_replace('-1', '', $key);
+            }
+
             foreach (['start', 'end', 'center', 'between', 'around'] as $key) {
                 $items['justify-content'.(empty($btMedia) ? '' : '-').$btMedia.'-'.$key] = (empty($twMedia) ? '' : $twMedia.':').'justify-'.$key;
             }
