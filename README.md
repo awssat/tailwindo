@@ -8,7 +8,7 @@
   <img src="https://pbs.twimg.com/media/DQ-mDgSX0AUpCPL.png">
 </p>
 
-This tool can **convert Your CSS framework (currently Boostrap) classes** in HTML/PHP (any of your choice) files to equivalent **Tailwind CSS** classes.
+This tool can **convert Your CSS framework (currently Bootstrap) classes** in HTML/PHP (any of your choice) files to equivalent **Tailwind CSS** classes.
 
 ## Features
 - Made to be easy to add more CSS frameworks in the future (currently Bootstrap).
