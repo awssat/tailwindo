@@ -698,7 +698,7 @@ class BootstrapFramework implements Framework
     {
         $items = [
             'list-group'             => 'flex flex-col pl-0 mb-0 border rounded border-gray-300',
-            'list-group-item-action' => 'w-fill',
+            'list-group-item-action' => 'w-full',
             'list-group-item'        => 'relative block py-3 px-6 -mb-px border border-r-0 border-l-0 border-gray-300 no-underline',
             'list-group-flush'       => '',
         ];
