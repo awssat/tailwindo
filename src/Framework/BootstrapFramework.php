@@ -411,7 +411,7 @@ class BootstrapFramework implements Framework
     protected function text(): array
     {
         $items = [
-            'text-nowrap'   => 'whitespace-no-wrap',
+            'text-nowrap'   => 'whitespace-nowrap',
             'text-truncate' => 'truncate',
 
             'text-lowercase'  => 'lowercase',
