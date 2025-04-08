@@ -471,13 +471,13 @@ class BootstrapFramework implements Framework
     protected function positioning(): array
     {
         $items = [];
-
+        //https://getbootstrap.com/docs/4.6/utilities/position
         foreach ([
             'position-static' => 'static',
             'position-relative' => 'relative',
             'position-absolute' => 'absolute',
             'position-fixed' => 'fixed',
-            'position-sticky' => '',
+            'position-sticky' => 'sticky',
             'fixed-top' => 'top-0',
             'fixed-bottom' => 'bottom-0',
         ] as $btPosition => $twPosition) {
