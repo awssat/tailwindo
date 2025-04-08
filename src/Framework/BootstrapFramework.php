@@ -4,15 +4,17 @@ namespace Awssat\Tailwindo\Framework;
 
 class BootstrapFramework implements Framework
 {
+    // https://getbootstrap.com/docs/4.6/layout/overview/#containers
     protected $mediaOptions = [
-        'xs'    => 'sm',
-        'sm'    => 'sm',
-        'md'    => 'md',
-        'lg'    => 'lg',
-        'xl'    => 'xl',
+        'xs'    => 'sm', // < 575px
+        'sm'    => 'sm', // >=576px
+        'md'    => 'md', // >=768px
+        'lg'    => 'lg', // >=992px
+        'xl'    => 'xl', // >=120px
         'print' => 'print',
     ];
 
+    // https://getbootstrap.com/docs/4.6/utilities/spacing/
     protected $spacings = [
         '0'  => '0',
         '1'  => '1',
@@ -20,6 +22,7 @@ class BootstrapFramework implements Framework
         '3'  => '4',
         '4'  => '6',
         '5'  => '12',
+        'auto' => 'auto',
     ];
 
     protected $grid = [
