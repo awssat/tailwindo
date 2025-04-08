@@ -204,14 +204,14 @@ class BootstrapFramework implements Framework
     {
         $items = [
             'row' => 'flex flex-wrap ',
-            'col' => 'relative flex-grow max-w-full flex-1 px-4',
+            'col' => 'relative grow max-w-full flex-1 px-4',
         ];
 
-        //col-(xs|sm|md|lg|xl) = (sm|md|lg|xl):flex-grow
+        //col-(xs|sm|md|lg|xl) = (sm|md|lg|xl):grow
         //ml-(xs|sm|md|lg|xl)-auto = (sm|md|lg|xl):mx-auto:ml-auto
         //mr-(xs|sm|md|lg|xl)-auto = (sm|md|lg|xl):mx-auto:mr-auto
         foreach ($this->mediaOptions as $btMedia => $twMedia) {
-            $items['col-'.$btMedia] = 'relative '.$twMedia.':flex-grow '.$twMedia.':flex-1';
+            $items['col-'.$btMedia] = 'relative '.$twMedia.':grow '.$twMedia.':flex-1';
             $items['ml-'.$btMedia.'-auto'] = $twMedia.':ml-auto';
             $items['mr-'.$btMedia.'-auto'] = $twMedia.':mr-auto';
 
@@ -615,7 +615,7 @@ class BootstrapFramework implements Framework
             'card-group' => 'flex flex-col',
             'card'       => function () {
                 if ($this->isInLastSearches('card-deck')) {
-                    return 'relative block md:flex w-full md:min-w-0 md:mx-4 flex-col flex-no-shrink flex-grow rounded break-words border bg-white border-1 border-gray-300';
+                    return 'relative block md:flex w-full md:min-w-0 md:mx-4 flex-col flex-no-shrink grow rounded break-words border bg-white border-1 border-gray-300';
                 } else {
                     return 'relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300';
                 }
@@ -752,7 +752,7 @@ class BootstrapFramework implements Framework
             } elseif ($this->isInLastSearches('nav-fill', 5)) {
                 $navItemClasses .= ' flex-auto text-center';
             } elseif ($this->isInLastSearches('nav-justified', 5)) {
-                $navItemClasses .= ' flex-grow text-center';
+                $navItemClasses .= ' grow text-center';
             }
 
             return $navItemClasses;
@@ -764,7 +764,7 @@ class BootstrapFramework implements Framework
         $items['navbar-text'] = 'inline-block pt-2 pb-2';
         $items['navbar-dark'] = 'text-white';
         $items['navbar-light'] = 'text-black';
-        $items['navbar-collapse'] = 'flex-grow items-center';
+        $items['navbar-collapse'] = 'grow items-center';
         $items['navbar-expand'] = 'flex-nowrap content-start';
         $items['navbar-expand-{regex_string}'] = '';
         $items['navbar-toggler'] = 'py-1 px-2 text-md leading-normal bg-transparent border border-transparent rounded';
