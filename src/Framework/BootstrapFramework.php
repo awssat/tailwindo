@@ -72,12 +72,12 @@ class BootstrapFramework implements Framework
     public function defaultCSS(): array
     {
         return [
-            //https://getbootstrap.com/docs/4.4/content/reboot/
+            //https://getbootstrap.com/docs/4.6/content/reboot/
             'h1' => '',
             //...
             'fieldset' => '',
 
-            //https://getbootstrap.com/docs/4.4/content/typography/
+            //https://getbootstrap.com/docs/4.6/content/typography/
             'del' => '',
             //..
             'a' => '',
@@ -134,7 +134,7 @@ class BootstrapFramework implements Framework
                 return 'container mx-auto sm:px-4';
             },
 
-            //http://getbootstrap.com/docs/4.0/utilities/embed/
+            //https://getbootstrap.com/docs/4.6/utilities/embed/
             'embed-responsive'       => '',
             'embed-responsive-item'  => '',
             'embed-responsive-21by9' => '',
@@ -142,18 +142,18 @@ class BootstrapFramework implements Framework
             'embed-responsive-4by3'  => '',
             'embed-responsive-1by1'  => '',
 
-            // http://getbootstrap.com/docs/4.0/utilities/image-replacement/
+            // https://getbootstrap.com/docs/4.6/utilities/image-replacement/
             'text-hide' => '',
 
-            // http://getbootstrap.com/docs/4.0/utilities/screenreaders/
+            // https://getbootstrap.com/docs/4.6/utilities/screenreaders/
             'sr-only'           => 'sr-only',
             'sr-only-focusable' => 'focus:not-sr-only',
 
-            // http://getbootstrap.com/docs/4.0/content/images/
+            // https://getbootstrap.com/docs/4.6/content/images/
             'img-fluid'     => 'max-w-full h-auto',
             'img-thumbnail' => 'max-w-full h-auto border-1 border-gray-200 rounded p-1',
 
-            //http://getbootstrap.com/docs/4.0/content/tables/
+            //https://getbootstrap.com/docs/4.6/content/tables/
             'table'    => 'w-full max-w-full mb-4 bg-transparent',
             'table-sm' => 'p-1',
             // 'table-bordered' => '',
@@ -161,7 +161,7 @@ class BootstrapFramework implements Framework
             'table-responsive'                => 'block w-full overflow-auto scrolling-touch',
             'table-responsive-{regex_string}' => 'block w-full overflow-auto scrolling-touch',
 
-            //http://getbootstrap.com/docs/4.0/content/figures/
+            //https://getbootstrap.com/docs/4.6/content/figures/
             'figure'         => 'inline-block mb-4',
             'figure-img'     => 'mb-2 leading-none',
             'figure-caption' => 'text-gray-',
@@ -170,14 +170,14 @@ class BootstrapFramework implements Framework
             'show'     => 'opacity-100 block', //need to be checked
             'disabled' => 'opacity-75',
 
-            //http://getbootstrap.com/docs/4.0/components/collapse/
+            //https://getbootstrap.com/docs/4.6/components/collapse/
             // 'collapse' => 'hidden',
             'collapsing' => 'relative h-0 overflow-hidden ', //there should be a h-0
 
-            //http://getbootstrap.com/docs/4.0/utilities/close-icon/
+            //https://getbootstrap.com/docs/4.6/utilities/close-icon/
             'close' => 'absolute top-0 bottom-0 right-0 px-4 py-3',
 
-            //http://getbootstrap.com/docs/4.0/components/jumbotron/
+            //https://getbootstrap.com/docs/4.6/components/jumbotron/
             'jumbotron'       => 'py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded',
             'jumbotron-fluid' => 'pr-0 pl-0 rounded-none',
         ];
@@ -235,7 +235,7 @@ class BootstrapFramework implements Framework
 
     protected function mediaObject(): array
     {
-        //http://getbootstrap.com/docs/4.0/layout/media-object/
+        //https://getbootstrap.com/docs/4.6/layout/media-object/
         return [
             'media'      => 'flex items-start',
             'media-body' => 'flex-1',
