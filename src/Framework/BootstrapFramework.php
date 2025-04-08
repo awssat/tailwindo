@@ -61,8 +61,8 @@ class BootstrapFramework implements Framework
          * latest versions of Bootstrap/Tailwind during the coding of this file.
          */
         return [
-            '4.4.1', // bootstrap
-            '1.4.0', //tailwind
+            '4.6.2', // bootstrap
+            '4.1.3', // tailwind
         ];
     }
 
@@ -557,7 +557,7 @@ class BootstrapFramework implements Framework
     protected function breadcrumb(): array
     {
         return [
-            'breadcrumb'     => 'flex flex-wrap list-reset pt-3 pb-3 py-4 px-4 mb-4 bg-gray-200 rounded',
+            'breadcrumb'     => 'flex flex-wrap list-none pt-3 pb-3 py-4 px-4 mb-4 bg-gray-200 rounded',
             'breadcrumb-item'=> 'inline-block px-2 py-2 text-gray-700',
         ];
     }
@@ -642,7 +642,7 @@ class BootstrapFramework implements Framework
             'dropdown'         => 'relative',
             'dropup'           => 'relative',
             'dropdown-toggle'  => ' inline-block w-0 h-0 ml-1 align border-b-0 border-t-1 border-r-1 border-l-1',
-            'dropdown-menu'    => ' absolute left-0 z-50 float-left hidden list-reset	 py-2 mt-1 text-base bg-white border border-gray-300 rounded',
+            'dropdown-menu'    => ' absolute left-0 z-50 float-left hidden list-none	 py-2 mt-1 text-base bg-white border border-gray-300 rounded',
             'dropdown-divider' => 'h-0 my-2 overflow-hidden border-t-1 border-gray-300',
             'dropdown-item'    => 'block w-full py-1 px-6 font-normal text-gray-900 whitespace-no-wrap border-0',
             'dropdown-header'  => 'block py-2 px-6 mb-0 text-sm text-gray-800 whitespace-no-wrap',
@@ -760,7 +760,7 @@ class BootstrapFramework implements Framework
 
         $items['navbar'] = 'relative flex flex-wrap items-center content-between py-3 px-4';
         $items['navbar-brand'] = 'inline-block pt-1 pb-1 mr-4 text-lg whitespace-no-wrap';
-        $items['navbar-nav'] = 'flex flex-wrap list-reset pl-0 mb-0';
+        $items['navbar-nav'] = 'flex flex-wrap list-none pl-0 mb-0';
         $items['navbar-text'] = 'inline-block pt-2 pb-2';
         $items['navbar-dark'] = 'text-white';
         $items['navbar-light'] = 'text-black';
@@ -779,7 +779,7 @@ class BootstrapFramework implements Framework
     protected function pagination(): array
     {
         return [
-            'pagination'    => 'flex list-reset pl-0 rounded',
+            'pagination'    => 'flex list-none pl-0 rounded',
             'pagination-lg' => 'text-xl',
             'pagination-sm' => 'text-sm',
             'page-link'     => 'relative block py-2 px-3 -ml-px leading-normal text-blue bg-white border border-gray-200 no-underline hover:text-blue-800 hover:bg-gray-200',
