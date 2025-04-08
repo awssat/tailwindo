@@ -347,9 +347,9 @@ class BootstrapFramework implements Framework
 
             $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-wrap'] = (empty($twMedia) ? '' : $twMedia.':').'flex-wrap';
             $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-wrap-reverse'] = (empty($twMedia) ? '' : $twMedia.':').'flex-wrap-reverse';
-            $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-nowrap'] = (empty($twMedia) ? '' : $twMedia.':').'flex-no-wrap';
+            $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-nowrap'] = (empty($twMedia) ? '' : $twMedia.':').'flex-nowrap';
 
-            $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-nowrap'] = (empty($twMedia) ? '' : $twMedia.':').'flex-no-wrap';
+            $items['flex'.(empty($btMedia) ? '' : '-').$btMedia.'-nowrap'] = (empty($twMedia) ? '' : $twMedia.':').'flex-nowrap';
 
             if ($btMedia != '') {
                 $items['order-'.$btMedia.'-{regex_number}'] = $twMedia.':order-{regex_number}';
@@ -611,7 +611,7 @@ class BootstrapFramework implements Framework
     protected function cards(): array
     {
         return [
-            'card-deck'  => 'flex flex-row flex-wrap md:flex-no-wrap -mx-1',
+            'card-deck'  => 'flex flex-row flex-wrap md:flex-nowrap -mx-1',
             'card-group' => 'flex flex-col',
             'card'       => function () {
                 if ($this->isInLastSearches('card-deck')) {
@@ -765,7 +765,7 @@ class BootstrapFramework implements Framework
         $items['navbar-dark'] = 'text-white';
         $items['navbar-light'] = 'text-black';
         $items['navbar-collapse'] = 'flex-grow items-center';
-        $items['navbar-expand'] = 'flex-no-wrap content-start';
+        $items['navbar-expand'] = 'flex-nowrap content-start';
         $items['navbar-expand-{regex_string}'] = '';
         $items['navbar-toggler'] = 'py-1 px-2 text-md leading-normal bg-transparent border border-transparent rounded';
 
