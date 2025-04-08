@@ -565,7 +565,7 @@ class BootstrapFramework implements Framework
     protected function buttons(): array
     {
         $items = [
-            'btn'                => 'inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded {tailwindo|py-1 px-3 leading-normal} no-underline',
+            'btn'                => 'inline-block align-middle text-center select-none border font-normal whitespace-nowrap rounded {tailwindo|py-1 px-3 leading-normal} no-underline',
             'btn-group'          => 'relative inline-flex align-middle',
             'btn-group-vertical' => 'relative inline-flex align-middle flex-col items-start justify-center',
             'btn-toolbar'        => 'flex flex-wrap justify-start',
@@ -644,8 +644,8 @@ class BootstrapFramework implements Framework
             'dropdown-toggle'  => ' inline-block w-0 h-0 ml-1 align border-b-0 border-t-1 border-r-1 border-l-1',
             'dropdown-menu'    => ' absolute left-0 z-50 float-left hidden list-none	 py-2 mt-1 text-base bg-white border border-gray-300 rounded',
             'dropdown-divider' => 'h-0 my-2 overflow-hidden border-t-1 border-gray-300',
-            'dropdown-item'    => 'block w-full py-1 px-6 font-normal text-gray-900 whitespace-no-wrap border-0',
-            'dropdown-header'  => 'block py-2 px-6 mb-0 text-sm text-gray-800 whitespace-no-wrap',
+            'dropdown-item'    => 'block w-full py-1 px-6 font-normal text-gray-900 whitespace-nowrap border-0',
+            'dropdown-header'  => 'block py-2 px-6 mb-0 text-sm text-gray-800 whitespace-nowrap',
         ];
     }
 
@@ -759,7 +759,7 @@ class BootstrapFramework implements Framework
         };
 
         $items['navbar'] = 'relative flex flex-wrap items-center content-between py-3 px-4';
-        $items['navbar-brand'] = 'inline-block pt-1 pb-1 mr-4 text-lg whitespace-no-wrap';
+        $items['navbar-brand'] = 'inline-block pt-1 pb-1 mr-4 text-lg whitespace-nowrap';
         $items['navbar-nav'] = 'flex flex-wrap list-none pl-0 mb-0';
         $items['navbar-text'] = 'inline-block pt-2 pb-2';
         $items['navbar-dark'] = 'text-white';
