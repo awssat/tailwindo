@@ -568,7 +568,7 @@ class BootstrapFramework implements Framework
     protected function buttons(): array
     {
         $items = [
-            'btn'                => 'inline-block align-middle text-center select-none border font-normal whitespace-nowrap rounded {tailwindo|py-1 px-3 leading-normal} no-underline',
+            'btn'                => 'inline-block align-middle text-center select-none border font-normal whitespace-nowrap rounded {tailwindo|py-1 px-3 leading-none} no-underline',
             'btn-group'          => 'relative inline-flex align-middle',
             'btn-group-vertical' => 'relative inline-flex align-middle flex-col items-start justify-center',
             'btn-toolbar'        => 'flex flex-wrap justify-start',
@@ -656,20 +656,20 @@ class BootstrapFramework implements Framework
     {
         return [
             'form-group'         => 'mb-4',
-            'form-control'       => 'block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded',
-            'form-control-lg'    => 'py-2 px-4 text-lg leading-normal rounded',
-            'form-control-sm'    => 'py-1 px-2 text-sm leading-normal rounded',
+            'form-control'       => 'block appearance-none w-full py-1 px-2 mb-1 text-base leading-none bg-white text-gray-800 border border-gray-200 rounded',
+            'form-control-lg'    => 'py-2 px-4 text-lg leading-none rounded',
+            'form-control-sm'    => 'py-1 px-2 text-sm leading-none rounded',
             'form-control-file'  => 'block appearance-none',
             'form-control-range' => 'block appearance-none',
 
             'form-inline' => 'flex items-center',
 
-            'col-form-label'    => 'pt-2 pb-2 mb-0 leading-normal',
-            'col-form-label-lg' => 'pt-3 pb-3 mb-0 leading-normal',
-            'col-form-label-sm' => 'pt-1 pb-1 mb-0 leading-normal',
+            'col-form-label'    => 'pt-2 pb-2 mb-0 leading-none',
+            'col-form-label-lg' => 'pt-3 pb-3 mb-0 leading-none',
+            'col-form-label-sm' => 'pt-1 pb-1 mb-0 leading-none',
 
             'col-form-legend'    => 'pt-2 pb-2 mb-0 text-base',
-            'col-form-plaintext' => 'pt-2 pb-2 mb-0 leading-normal bg-transparent border-transparent border-r-0 border-l-0 border-t border-b',
+            'col-form-plaintext' => 'pt-2 pb-2 mb-0 leading-none bg-transparent border-transparent border-r-0 border-l-0 border-t border-b',
 
             'form-text'        => 'block mt-1',
             'form-row'         => 'flex flex-wrap -mr-1 -ml-1',
@@ -679,10 +679,10 @@ class BootstrapFramework implements Framework
 
             'form-check-inline' => 'inline-block mr-2',
             'valid-feedback'    => 'hidden mt-1 text-sm text-green',
-            'valid-tooltip'     => 'absolute z-10 hidden w-4 font-normal leading-normal text-white rounded p-2 bg-green-700',
+            'valid-tooltip'     => 'absolute z-10 hidden w-4 font-normal leading-none text-white rounded p-2 bg-green-700',
             'is-valid'          => 'bg-green-700',
             'invalid-feedback'  => 'hidden mt-1 text-sm text-red',
-            'invalid-tooltip'   => 'absolute z-10 hidden w-4 font-normal leading-normal text-white rounded p-2 bg-red-700',
+            'invalid-tooltip'   => 'absolute z-10 hidden w-4 font-normal leading-none text-white rounded p-2 bg-red-700',
             'is-invalid'        => 'bg-red-700',
         ];
     }
@@ -691,7 +691,7 @@ class BootstrapFramework implements Framework
     {
         return [
             'input-group'          => 'relative flex items-stretch w-full',
-            'input-group-addon'    => 'py-1 px-2 mb-1 text-base font-normal leading-normal text-gray-900 text-center bg-gray-300 border border-4 border-gray-100 rounded',
+            'input-group-addon'    => 'py-1 px-2 mb-1 text-base font-normal leading-none text-gray-900 text-center bg-gray-300 border border-4 border-gray-100 rounded',
             'input-group-addon-lg' => 'py-2 px-3 mb-0 text-lg',
             'input-group-addon-sm' => 'py-3 px-4 mb-0 text-lg',
         ];
@@ -770,7 +770,7 @@ class BootstrapFramework implements Framework
         $items['navbar-collapse'] = 'grow items-center';
         $items['navbar-expand'] = 'flex-nowrap content-start';
         $items['navbar-expand-{regex_string}'] = '';
-        $items['navbar-toggler'] = 'py-1 px-2 text-md leading-normal bg-transparent border border-transparent rounded';
+        $items['navbar-toggler'] = 'py-1 px-2 text-md leading-none bg-transparent border border-transparent rounded';
 
         //for now
         $items['collapse'] = 'hidden';
@@ -785,8 +785,8 @@ class BootstrapFramework implements Framework
             'pagination'    => 'flex list-none pl-0 rounded',
             'pagination-lg' => 'text-xl',
             'pagination-sm' => 'text-sm',
-            'page-link'     => 'relative block py-2 px-3 -ml-px leading-normal text-blue bg-white border border-gray-200 no-underline hover:text-blue-800 hover:bg-gray-200',
-            // 'page-link' => 'relative block py-2 px-3 -ml-px leading-normal text-blue bg-white border border-gray-',
+            'page-link'     => 'relative block py-2 px-3 -ml-px leading-none text-blue bg-white border border-gray-200 no-underline hover:text-blue-800 hover:bg-gray-200',
+            // 'page-link' => 'relative block py-2 px-3 -ml-px leading-none text-blue bg-white border border-gray-',
         ];
     }
 }
