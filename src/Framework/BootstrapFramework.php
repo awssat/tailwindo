@@ -154,7 +154,7 @@ class BootstrapFramework implements Framework
 
             // https://getbootstrap.com/docs/4.6/content/images/
             'img-fluid'     => 'max-w-full h-auto',
-            'img-thumbnail' => 'max-w-full h-auto border-1 border-gray-200 rounded p-1',
+            'img-thumbnail' => 'max-w-full h-auto border-1 border-gray-200 rounded-sm p-1',
 
             //https://getbootstrap.com/docs/4.6/content/tables/
             'table'    => 'w-full max-w-full mb-4 bg-transparent',
@@ -181,7 +181,7 @@ class BootstrapFramework implements Framework
             'close' => 'absolute top-0 bottom-0 right-0 px-4 py-3',
 
             //https://getbootstrap.com/docs/4.6/components/jumbotron/
-            'jumbotron'       => 'py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded',
+            'jumbotron'       => 'py-8 px-4 md:py-16 md:px-8 mb-8 bg-gray-200 rounded-sm',
             'jumbotron-fluid' => 'pr-0 pl-0 rounded-none',
         ];
 
@@ -508,7 +508,7 @@ class BootstrapFramework implements Framework
     protected function alerts()
     {
         $items = [
-            'alert'             => 'relative px-3 py-3 mb-4 border rounded',
+            'alert'             => 'relative px-3 py-3 mb-4 border rounded-sm',
             'alert-heading'     => '', //color: inherit
             'alert-link'        => 'font-bold no-underline text-current',
             'alert-dismissible' => '',
@@ -535,7 +535,7 @@ class BootstrapFramework implements Framework
     protected function badges(): array
     {
         $items = [
-            'badge'      => 'inline-block p-1 text-center font-semibold text-sm align-baseline leading-none rounded',
+            'badge'      => 'inline-block p-1 text-center font-semibold text-sm align-baseline leading-none rounded-sm',
             'badge-pill' => 'rounded-full py-1 px-3',
         ];
 
@@ -560,7 +560,7 @@ class BootstrapFramework implements Framework
     protected function breadcrumb(): array
     {
         return [
-            'breadcrumb'     => 'flex flex-wrap list-none pt-3 pb-3 py-4 px-4 mb-4 bg-gray-200 rounded',
+            'breadcrumb'     => 'flex flex-wrap list-none pt-3 pb-3 py-4 px-4 mb-4 bg-gray-200 rounded-sm',
             'breadcrumb-item'=> 'inline-block px-2 py-2 text-gray-700',
         ];
     }
@@ -568,7 +568,7 @@ class BootstrapFramework implements Framework
     protected function buttons(): array
     {
         $items = [
-            'btn'                => 'inline-block align-middle text-center select-none border font-normal whitespace-nowrap rounded {tailwindo|py-1 px-3 leading-none} no-underline',
+            'btn'                => 'inline-block align-middle text-center select-none border font-normal whitespace-nowrap rounded-sm {tailwindo|py-1 px-3 leading-none} no-underline',
             'btn-group'          => 'relative inline-flex align-middle',
             'btn-group-vertical' => 'relative inline-flex align-middle flex-col items-start justify-center',
             'btn-toolbar'        => 'flex flex-wrap justify-start',
@@ -618,9 +618,9 @@ class BootstrapFramework implements Framework
             'card-group' => 'flex flex-col',
             'card'       => function () {
                 if ($this->isInLastSearches('card-deck')) {
-                    return 'relative block md:flex w-full md:min-w-0 md:mx-4 flex-col flex-no-shrink grow rounded break-words border bg-white border-1 border-gray-300';
+                    return 'relative block md:flex w-full md:min-w-0 md:mx-4 flex-col flex-no-shrink grow rounded-sm break-words border bg-white border-1 border-gray-300';
                 } else {
-                    return 'relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-gray-300';
+                    return 'relative flex flex-col min-w-0 rounded-sm break-words border bg-white border-1 border-gray-300';
                 }
             },
             'card-body'         => 'flex-auto p-6',
@@ -633,9 +633,9 @@ class BootstrapFramework implements Framework
             'card-header-tabs'  => 'border-b-0 -ml-2 -mb-3',
             'card-header-pills' => '-ml-3 -mr-3',
             'card-img-overlay'  => 'absolute inset-y-0 inset-x-0 p-6',
-            'card-img'          => 'w-full rounded',
-            'card-img-top'      => 'w-full rounded rounded-t',
-            'card-img-bottom'   => 'w-full rounded rounded-b',
+            'card-img'          => 'w-full rounded-sm',
+            'card-img-top'      => 'w-full rounded-sm rounded-t',
+            'card-img-bottom'   => 'w-full rounded-sm rounded-b',
         ];
     }
 
@@ -645,7 +645,7 @@ class BootstrapFramework implements Framework
             'dropdown'         => 'relative',
             'dropup'           => 'relative',
             'dropdown-toggle'  => ' inline-block w-0 h-0 ml-1 align border-b-0 border-t-1 border-r-1 border-l-1',
-            'dropdown-menu'    => ' absolute left-0 z-50 float-left hidden list-none	 py-2 mt-1 text-base bg-white border border-gray-300 rounded',
+            'dropdown-menu'    => ' absolute left-0 z-50 float-left hidden list-none	 py-2 mt-1 text-base bg-white border border-gray-300 rounded-sm',
             'dropdown-divider' => 'h-0 my-2 overflow-hidden border-t-1 border-gray-300',
             'dropdown-item'    => 'block w-full py-1 px-6 font-normal text-gray-900 whitespace-nowrap border-0',
             'dropdown-header'  => 'block py-2 px-6 mb-0 text-sm text-gray-800 whitespace-nowrap',
@@ -656,9 +656,9 @@ class BootstrapFramework implements Framework
     {
         return [
             'form-group'         => 'mb-4',
-            'form-control'       => 'block appearance-none w-full py-1 px-2 mb-1 text-base leading-none bg-white text-gray-800 border border-gray-200 rounded',
-            'form-control-lg'    => 'py-2 px-4 text-lg leading-none rounded',
-            'form-control-sm'    => 'py-1 px-2 text-sm leading-none rounded',
+            'form-control'       => 'block appearance-none w-full py-1 px-2 mb-1 text-base leading-none bg-white text-gray-800 border border-gray-200 rounded-sm',
+            'form-control-lg'    => 'py-2 px-4 text-lg leading-none rounded-sm',
+            'form-control-sm'    => 'py-1 px-2 text-sm leading-none rounded-sm',
             'form-control-file'  => 'block appearance-none',
             'form-control-range' => 'block appearance-none',
 
@@ -679,10 +679,10 @@ class BootstrapFramework implements Framework
 
             'form-check-inline' => 'inline-block mr-2',
             'valid-feedback'    => 'hidden mt-1 text-sm text-green',
-            'valid-tooltip'     => 'absolute z-10 hidden w-4 font-normal leading-none text-white rounded p-2 bg-green-700',
+            'valid-tooltip'     => 'absolute z-10 hidden w-4 font-normal leading-none text-white rounded-sm p-2 bg-green-700',
             'is-valid'          => 'bg-green-700',
             'invalid-feedback'  => 'hidden mt-1 text-sm text-red',
-            'invalid-tooltip'   => 'absolute z-10 hidden w-4 font-normal leading-none text-white rounded p-2 bg-red-700',
+            'invalid-tooltip'   => 'absolute z-10 hidden w-4 font-normal leading-none text-white rounded-sm p-2 bg-red-700',
             'is-invalid'        => 'bg-red-700',
         ];
     }
@@ -691,7 +691,7 @@ class BootstrapFramework implements Framework
     {
         return [
             'input-group'          => 'relative flex items-stretch w-full',
-            'input-group-addon'    => 'py-1 px-2 mb-1 text-base font-normal leading-none text-gray-900 text-center bg-gray-300 border border-4 border-gray-100 rounded',
+            'input-group-addon'    => 'py-1 px-2 mb-1 text-base font-normal leading-none text-gray-900 text-center bg-gray-300 border border-4 border-gray-100 rounded-sm',
             'input-group-addon-lg' => 'py-2 px-3 mb-0 text-lg',
             'input-group-addon-sm' => 'py-3 px-4 mb-0 text-lg',
         ];
@@ -700,7 +700,7 @@ class BootstrapFramework implements Framework
     protected function listGroups(): array
     {
         $items = [
-            'list-group'             => 'flex flex-col pl-0 mb-0 border rounded border-gray-300',
+            'list-group'             => 'flex flex-col pl-0 mb-0 border rounded-sm border-gray-300',
             'list-group-item-action' => 'w-full',
             'list-group-item'        => 'relative block py-3 px-6 -mb-px border border-r-0 border-l-0 border-gray-300 no-underline',
             'list-group-flush'       => '',
@@ -739,9 +739,9 @@ class BootstrapFramework implements Framework
         $items['nav-link'] = function () {
             $navLinkClasses = 'inline-block py-2 px-4 no-underline';
             if ($this->isInLastSearches('nav-tabs', 5)) {
-                $navLinkClasses .= ' border border-b-0 mx-1 rounded rounded-t';
+                $navLinkClasses .= ' border border-b-0 mx-1 rounded-sm rounded-t';
             } elseif ($this->isInLastSearches('nav-pills', 5)) {
-                $navLinkClasses .= ' border border-blue bg-blue rounded text-white mx-1';
+                $navLinkClasses .= ' border border-blue bg-blue rounded-sm text-white mx-1';
             }
 
             return $navLinkClasses;
@@ -770,11 +770,11 @@ class BootstrapFramework implements Framework
         $items['navbar-collapse'] = 'grow items-center';
         $items['navbar-expand'] = 'flex-nowrap content-start';
         $items['navbar-expand-{regex_string}'] = '';
-        $items['navbar-toggler'] = 'py-1 px-2 text-md leading-none bg-transparent border border-transparent rounded';
+        $items['navbar-toggler'] = 'py-1 px-2 text-md leading-none bg-transparent border border-transparent rounded-sm';
 
         //for now
         $items['collapse'] = 'hidden';
-        $items['navbar-toggler-icon'] = 'px-5 py-1 border border-gray-600 rounded';
+        $items['navbar-toggler-icon'] = 'px-5 py-1 border border-gray-600 rounded-sm';
 
         return $items;
     }
@@ -782,7 +782,7 @@ class BootstrapFramework implements Framework
     protected function pagination(): array
     {
         return [
-            'pagination'    => 'flex list-none pl-0 rounded',
+            'pagination'    => 'flex list-none pl-0 rounded-sm',
             'pagination-lg' => 'text-xl',
             'pagination-sm' => 'text-sm',
             'page-link'     => 'relative block py-2 px-3 -ml-px leading-none text-blue bg-white border border-gray-200 no-underline hover:text-blue-800 hover:bg-gray-200',
