@@ -160,9 +160,10 @@ class BootstrapFramework implements Framework
             'table'    => 'w-full max-w-full mb-4 bg-transparent',
             'table-sm' => 'p-1',
             // 'table-bordered' => '',
-            // 'table-striped' => '',
-            'table-responsive'                => 'block w-full overflow-auto scrolling-touch',
-            'table-responsive-{regex_string}' => 'block w-full overflow-auto scrolling-touch',
+            // 'table-striped' => '',         // scrolling-touch was removed in v2.0
+                                              // see "The scrolling-touch and scrolling-auto utilities have been removed"
+            'table-responsive'                => 'block w-full overflow-auto',
+            'table-responsive-{regex_string}' => 'block w-full overflow-auto',
 
             //https://getbootstrap.com/docs/4.6/content/figures/
             'figure'         => 'inline-block mb-4',
