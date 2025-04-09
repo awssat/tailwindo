@@ -422,7 +422,8 @@ class BootstrapFramework implements Framework
             'text-uppercase'  => 'uppercase',
             'text-capitalize' => 'capitalize',
 
-            'initialism' => '',
+            // https://getbootstrap.com/docs/4.6/content/typography/#abbreviations
+            'initialism' => 'text-xs uppercase',
             'lead'       => 'text-xl font-light',
             'small'      => 'text-xs',
             'mark'       => '',
@@ -431,12 +432,13 @@ class BootstrapFramework implements Framework
             'display-3'  => 'text-3xl',
             'display-4'  => 'text-4xl',
 
-            'h-1' => 'mb-2 font-medium leading-tight text-4xl',
-            'h-2' => 'mb-2 font-medium leading-tight text-3xl',
-            'h-3' => 'mb-2 font-medium leading-tight text-2xl',
-            'h-4' => 'mb-2 font-medium leading-tight text-xl',
-            'h-5' => 'mb-2 font-medium leading-tight text-lg',
-            'h-6' => 'mb-2 font-medium leading-tight text-base',
+             // https://v3.tailwindcss.com/docs/line-height
+            'h-1' => 'mb-2 font-medium leading-[1.25] text-4xl',
+            'h-2' => 'mb-2 font-medium leading-[1.25] text-3xl',
+            'h-3' => 'mb-2 font-medium leading-[1.25] text-2xl',
+            'h-4' => 'mb-2 font-medium leading-[1.25] text-xl',
+            'h-5' => 'mb-2 font-medium leading-[1.25] text-lg',
+            'h-6' => 'mb-2 font-medium leading-[1.25] text-base',
 
             'blockquote'        => 'mb-6 text-lg',
             'blockquote-footer' => 'block text-gray-',
@@ -578,8 +580,8 @@ class BootstrapFramework implements Framework
         ];
 
         foreach ([
-            'sm' => '{tailwindo|py-1 px-2 leading-tight} text-xs ',
-            'lg' => '{tailwindo|py-3 px-4 leading-tight} text-xl',
+            'sm' => '{tailwindo|py-1 px-2 leading-[1.25]} text-xs ',
+            'lg' => '{tailwindo|py-3 px-4 leading-[1.25]} text-xl',
         ] as $btMedia => $twClasses) {
             $items['btn-'.$btMedia] = $twClasses;
             $items['btn-group-'.$btMedia] = $twClasses;
