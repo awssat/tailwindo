@@ -618,7 +618,7 @@ class BootstrapFramework implements Framework
             'card-group' => 'flex flex-col',
             'card'       => function () {
                 if ($this->isInLastSearches('card-deck')) {
-                    return 'relative block md:flex w-full md:min-w-0 md:mx-4 flex-col flex-no-shrink grow rounded-sm break-words border bg-white border-1 border-gray-300';
+                    return 'relative block md:flex w-full md:min-w-0 md:mx-4 flex-col shrink-0 grow rounded-sm break-words border bg-white border-1 border-gray-300';
                 } else {
                     return 'relative flex flex-col min-w-0 rounded-sm break-words border bg-white border-1 border-gray-300';
                 }
