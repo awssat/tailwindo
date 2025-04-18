@@ -788,7 +788,7 @@ class BootstrapFramework implements Framework
             'pagination'    => 'flex list-none pl-0 rounded-sm',
             'pagination-lg' => 'text-xl',
             'pagination-sm' => 'text-sm',
-            'page-link'     => 'relative block py-2 px-3 -ml-px leading-none text-blue bg-white border border-gray-200 no-underline hover:text-blue-800 hover:bg-gray-200',
+            'page-link'     => 'relative block py-2 px-3 -ml-px leading-none text-blue bg-white border border-gray-200 no-underline hover:not-focus:text-blue-800 hover:not-focus:bg-gray-200',
             // 'page-link' => 'relative block py-2 px-3 -ml-px leading-none text-blue bg-white border border-gray-',
         ];
     }
